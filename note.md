@@ -461,3 +461,154 @@ ID > class > element & pseudo
     この辺は順番の話で、SOURCEORDERのところで書いた通り
 
 
+#### 最終的なCSSの値の決定フロー
+
+次のような指定値は最終的にどんな値に決定されるのか？
+
+サンプル：
+
+```html
+<div class="section">
+    <p class="amazing">AMAZING</p>
+</div>
+```
+
+```CSS
+.section {
+    font-size: 1.5rem;
+    width: 280px;
+    background-color: orange;
+}
+
+p {
+    width: 140px;
+    background-color: green;
+}
+
+.amazing {
+    width: 66%;
+}
+```
+
+最終的な値の決定手順：
+
+1. 宣言値
+
+    作成者の指定した値
+
+2. cascade値
+
+    cascade後にその宣言にたいしてもっとも優先度が高い値
+
+3. 特定値
+
+    cascadeしても優先度が高い値がなかった場合に採用される値
+
+4. 計算値
+
+    相対値を絶対値に変換した値
+
+5. 使用済の値
+
+    レイアウトに基づいた計算値
+
+6. 実際の値
+
+    1~5を経て決定された値
+
+これを適用すると
+
+```CSS
+* {
+    /* browser default */
+    font-size: 16px;
+}
+
+.section {
+    /* 
+    1. 1.5rem
+    2. 1.5rem
+    3. 1.5rem
+    4. 24px
+        1.5 * 16px
+    5. 24px
+    6. 24px
+    */
+    font-size: 1.5rem;
+    width: 280px;
+    background-color: orange;
+}
+
+p {
+    /* .sectionからfont-sizeを継承する */
+    /* font-size: 24px; */
+    width: 140px;
+    background-color: green;
+}
+
+.amazing {
+    /* 
+    1. 66%
+    2. 66%
+    3. 66%
+    4. 66%
+    5. .sectionの子要素なので.sectionのwidth280pxに対して66%である
+    つまり184.8px
+    6. 185px
+    */
+    width: 66%;
+}
+```
+
+
+相対値から絶対値へどうやって変換されるのか？
+
+サンプル
+
+```CSS
+html, body {
+    font-size: 16px;
+    width: 80vw;    /* 現在のviewportの幅の80% */
+}
+
+header {
+    font-size: 150%; /* 親要素の計算値 16px * 1.5 = 24px */ 
+    padding: 2em; /* emは親要素のフォントサイズを基準 16 * 2 = 32px */
+    margin-bottom: 10rem; /* remはroot要素のフォントサイズを基準 16 * 10 = 160px */
+    height: 90vh;   /* 現在のviewportの高さの90% */
+    width: 1000px;
+}
+
+.header-child {
+    font-size: 3rem;
+    padding: 10%;  /*親要素に対する相対値 1000px * 0.1 = 100px */
+}
+```
+
+
+知っておくこと：
+
+- 宣言されていない&&継承がない場合に採用される初期値がどのプロパティにもある
+- ブラウザはrootにデフォルトのfont-sizeがある（だいたい16px）
+- %と相対値は常にpxへ変換される
+- 親要素にfont-sizeが指定されていれば、%は親要素のfont-sizeに対してになる
+- 親要素に長さが指定されていれば、%は親要素のwidthに対してになる
+- emは親要素のfont-sizeに対しての相対値
+- emは現在のfont-sizeに対しての相対値
+- remは常にroot要素のfont-sizeに対しての相対値
+
+#### 継承
+
+知っておくこと
+
+- 継承は特定のプロパティに対して親要素から子要素へ行われる
+- テキストに関するプロパティは継承が行われる
+    font-family, font-sizeとか
+- プロパティの計算値は、宣言された値ではなく、継承されるものです
+- プロパティの継承は、そのプロパティが宣言されていなかったら継承される
+- `inherit`キーワードは特定のプロパティに継承を強制する
+- `inherit`キーワードは特定のプロパティの初期値をリセットする
+
+#### これらを受けてCSSのあるべき
+
+
