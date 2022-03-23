@@ -2,8 +2,8 @@
 
 ## 目次
 
-- [basic-tips](#basic-tips)
-- [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
+-   [basic-tips](#basic-tips)
+-   [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
 
 ## basic-tips
 
@@ -94,7 +94,7 @@ line-height: 3.5;
 }
 ```
 
-## `clip-path: polygon()`でshapeを生成する
+## `clip-path: polygon()`で shape を生成する
 
 ４つの頂点の座標を指定することで
 このプロパティを指定している要素の矩形の頂点座標を操作できる
@@ -118,7 +118,6 @@ line-height: 3.5;
 }
 ```
 
-
 ## `letter-spacing`で文字の字間を操作する
 
 > letter-spacing は CSS のプロパティで、テキストの水平方向の字間のスペースに関する挙動を設定します。
@@ -132,7 +131,7 @@ line-height: 3.5;
 > translate() は CSS の関数で、要素を水平方向や垂直方向で再配置します。結果は <transform-function> データ型になります。
 
 コンテンツの要素を`position: absolute`して
-`top`, `left`を50％にしても
+`top`, `left`を 50％にしても
 コンテンツの左上の頂点が基準になるので
 コンテンツはど真ん中にやってこない
 
@@ -159,10 +158,9 @@ line-height: 3.5;
 
 ```
 
-つまり、top, leftの位置からそれぞれ50％「後退」するのである
+つまり、top, left の位置からそれぞれ 50％「後退」するのである
 
 こうすればどまんなかンい配置できる
-
 
 ## アニメーション：fade in from aside.
 
@@ -208,7 +206,6 @@ translateX -100px -> 0
 その中でｱﾆﾒｰｼｮﾝさせたいプロパティを定義する
 （上記の通り）
 
-
 アニメーションがなぜだか震えたりするときは、
 
 `backface-vibibility`
@@ -219,12 +216,12 @@ translateX -100px -> 0
 
 デフォを制御：
 
-- リンクが踏まれる前は青色であること
-- リンクが踏まれたら紫色になること
+-   リンクが踏まれる前は青色であること
+-   リンクが踏まれたら紫色になること
 
 ```CSS
 
-.btn:link, 
+.btn:link,
  .btn:visited{
     text-decoration: none;
     padding: 15px 40px;
@@ -237,17 +234,15 @@ translateX -100px -> 0
 }
 ```
 
-
 `display: inline-block`:
 
 > この要素はブロック要素ボックスを生成しますが、周囲のコンテンツに対しては単一のインラインボックスであるかのように流れるようになります (置換要素の場合と似ています)。
-
 
 ## リッチなボタンホバー&クリック体験
 
 ```CSS
 
-.btn:link, 
+.btn:link,
  .btn:visited{
     text-transform: uppercase;
     text-decoration: none;
@@ -273,18 +268,17 @@ translateX -100px -> 0
 }
 ```
 
-
 ## `::after`疑似要素
 
 > CSS において ::after は、選択した要素の最後の子要素として擬似要素を生成します。よく content プロパティを使用して、要素に装飾的な内容を追加するために用いられます。この要素は既定でインラインです。
 
-ということで、つまりCSSで指定できる（生成できる）要素である
+ということで、つまり CSS で指定できる（生成できる）要素である
 
 ## さらにリッチなボタンホバー&クリック体験
 
 ```CSS
 
-.btn:link, 
+.btn:link,
  .btn:visited{
     text-transform: uppercase;
     text-decoration: none;
@@ -334,46 +328,42 @@ translateX -100px -> 0
 
 ## CSS BEHIND THE SCENES
 
-## webサイトを構築する際の3つの重要な柱
+## web サイトを構築する際の 3 つの重要な柱
 
-- レスポンシブデザイン
-- メンテナブル/スケーラブル
-- webパフォーマンス
+-   レスポンシブデザイン
+-   メンテナブル/スケーラブル
+-   web パフォーマンス
 
 #### レスポンシブデザイン
 
-- fluid layout
-- Media queries
-- responsive images
-- correct utils
-- Desktop-first vs modile-first
+-   fluid layout
+-   Media queries
+-   responsive images
+-   correct utils
+-   Desktop-first vs modile-first
 
 #### メンテナブル/スケーラブル
 
-- クリーンで再利用性が高いとか命名方法とか普通のこと
+-   クリーンで再利用性が高いとか命名方法とか普通のこと
 
-#### webパフォーマンス
+#### web パフォーマンス
 
 より少ないコード
-より少ないimage
-コード、image圧縮
-
+より少ない image
+コード、image 圧縮
 
 ## WHEN WE LOADED UP A WEBPAGE
 
 Load HTML
-Parse HTML: HTMLファイルを1行ずつデコードする
-    この際ブラウザはDOMツリーを生成する
-    HTMLファイルは最終的にこのDOMツリーで取得される
-    stylesheetsがあった場合これらをロードする
+Parse HTML: HTML ファイルを 1 行ずつデコードする
+この際ブラウザは DOM ツリーを生成する
+HTML ファイルは最終的にこの DOM ツリーで取得される
+stylesheets があった場合これらをロードする
 Load CSS
-Parse CSS: 2つの主なプロセスがある
-    1. cascade(CSSのあらゆる宣言を解決する)
-    2. 最終的なCSSの値を決定する
-    CSSObjectModelというものに変換される
+Parse CSS: 2 つの主なプロセスがある 1. cascade(CSS のあらゆる宣言を解決する) 2. 最終的な CSS の値を決定する
+CSSObjectModel というものに変換される
 
-Render tree: 各DOMを描写する
-
+Render tree: 各 DOM を描写する
 
 ## Parse CSS: Cascade
 
@@ -381,29 +371,27 @@ Render tree: 各DOMを描写する
 
 https://developer.mozilla.org/ja/docs/Web/CSS/Cascade
 
-> ある要素に複数のルールが適用される場合に、異なるスタイルシートを組み合わせ、異なるCSSルールや宣言の間の衝突を解決する処理。
+> ある要素に複数のルールが適用される場合に、異なるスタイルシートを組み合わせ、異なる CSS ルールや宣言の間の衝突を解決する処理。
 
-複数のstylesheetや複数のCSSルールが同じ要素に適用されるよう定義されていたとして
+複数の stylesheet や複数の CSS ルールが同じ要素に適用されるよう定義されていたとして
 それらの組み合わせから優先度を解決する処理のこと
 
-stylesheetにはいくつか種類があり、
+stylesheet にはいくつか種類があり、
 
-- ユーザエージェントスタイルシート
+-   ユーザエージェントスタイルシート
     ブラウザの既存のスタイルを提供するスタイルシート
 
-- 作成者スタイルシート
-    特定のwebページのスタイルを定義するスタイルシートである
+-   作成者スタイルシート
+    特定の web ページのスタイルを定義するスタイルシートである
 
-- ユーザスタイルシート 
-    webサイトを利用するユーザが使い勝手などを調整できるスタイルシート
+-   ユーザスタイルシート
+    web サイトを利用するユーザが使い勝手などを調整できるスタイルシート
 
-
-
-cascade順 (定義の適用優先度):
+cascade 順 (定義の適用優先度):
 
 IMPORTANCE > SPECIFICTY > SOURCE ORDER
 
-#### IMPORTANCEの優先度順位：
+#### IMPORTANCE の優先度順位：
 
 1. ユーザ `important` 宣言
 2. 作成者 `important` 宣言
@@ -411,9 +399,9 @@ IMPORTANCE > SPECIFICTY > SOURCE ORDER
 4. ユーザ宣言
 5. ブラウザのデフォルトの宣言
 
-上記のIMPORTANCEが同党の場合は、次に詳細度の比較でもって優先度を決める
+上記の IMPORTANCE が同党の場合は、次に詳細度の比較でもって優先度を決める
 
-#### SPECIFICITYの優先度順位：
+#### SPECIFICITY の優先度順位：
 
 参考
 
@@ -423,7 +411,7 @@ https://developer.mozilla.org/ja/docs/Web/CSS/Specificity
 > 複数の宣言が同じ詳細度であれば、 CSS の中で最後に宣言されたものが要素に適用されます。
 > 詳細度は、同じ要素に対して複数の宣言が行われている場合のみ適用されます。 CSS のルールでは、直接対象となった要素は要素が祖先から継承したルールよりも常に優先されます。
 
-ざっくりいうと、どの要素なのかより詳しく、より特定しやすい情報をふかしているCSS定義が優先される
+ざっくりいうと、どの要素なのかより詳しく、より特定しやすい情報をふかしている CSS 定義が優先される
 
 詳細度優先順:
 
@@ -433,7 +421,7 @@ ID > class > element & pseudo
 
 **この宣言は悪い習慣です。**
 
-`!important`で宣言されたCSS宣言は複数の宣言が競合するときに最も優先度が高く扱われる
+`!important`で宣言された CSS 宣言は複数の宣言が競合するときに最も優先度が高く扱われる
 
 また、
 
@@ -445,19 +433,187 @@ ID > class > element & pseudo
 
 コードの最後の方の宣言は他のすべての宣言をオーバーライドして適用される
 
-#### cascadeで覚えておくこと
+#### cascade で覚えておくこと
 
-- `!important`はもっとも優先度が高く扱われる
-- しかし`!important`はどうしても競合が解決しないときに最後の手段として用いるべき
+-   `!important`はもっとも優先度が高く扱われる
+-   しかし`!important`はどうしても競合が解決しないときに最後の手段として用いるべき
     バグの温床になりがち
 
-- HTML内で作成されるインラインスタイルは外部スタイルよりも常に優先される
+-   HTML 内で作成されるインラインスタイルは外部スタイルよりも常に優先される
     インラインスタイルは悪い習慣です
 
-- 詳細度をあげるにはidかclassでCSS宣言しましょう
-- 全称セレクタは詳細度を持たない（優先度がない）
-- セレクタの順番よりも詳細度を信頼しましょう
-- サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
-    この辺は順番の話で、SOURCEORDERのところで書いた通り
+-   詳細度をあげるには id か class で CSS 宣言しましょう
+-   全称セレクタは詳細度を持たない（優先度がない）
+-   セレクタの順番よりも詳細度を信頼しましょう
+-   サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
+    この辺は順番の話で、SOURCEORDER のところで書いた通り
+
+## [Might Conflict] Good Practice: 常にブラウザのデフォルト値を継承などするために
+
+1. rem を使ってあらゆる部分を root font-size と相対的にする
+
+こんな風にしておけば、
+ユーザがウェブページのフォントサイズを変更できたりして
+拡張性が広がりますね
+
+ブラウザのスタイルシート（ブラウザのデフォルト CSS）のフォントサイズに対して
+ルートのフォントサイズを固定値にするとどのブラウザでも固定のサイズになってしまう
+
+これは悪習慣らしい
+デフォのフォントサイズに対してルートのフォントサイズを比率にしておくと
+ブラウザに応じて適切にリサイズしてくれる
+
+```CSS
+/* before */
+html {
+    /* 一般的なデフォのフォントサイズ */
+    font-size: 16px;
+}
+
+/* after */
+html {
+    /* ブラウザのデフォのフォントサイズに常に合わせられる */
+    font-size: 100%;
+    /*
+    また、アプリケーション内部で基準のサイズを常に10pxにしておきたいならば
+    specified 10px / default 16px  = 0.625
+     */
+    font-size: 62.5%
+}
 
 
+```
+
+2. 同様に、ブラウザのデフォルトの仕様を常に適用するために
+   inherit をつかって継承させる場合
+
+例：box-sizing
+
+```CSS
+/* before */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    padding: 30px;
+}
+
+/* after */
+
+* {
+    margin: 0;
+    padding: 0;
+    /* ブラウザのデフォルトを常に継承する */
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    padding: 30px;
+    /* アプリケーション内で利用したいbox-sizing */
+    box-sizing: border-box;
+}
+```
+
+3. 疑似要素への全称セレクタの適用もできる
+
+```CSS
+/* before */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* after */
+*,
+*::after,
+*::before,
+*:hover {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+```
+
+#### [Might Conflict] BOX MODEL
+
+1. box-sizing のデフォルト`content-box`
+
+width = right border + right padding + specified width + left padding + left border;
+
+height = 同様
+
+2. `border-box`
+
+width = specified width;
+
+つまり、border, padding が width 指定値に収まるようにコンテンツ領域が縮小される
+
+3. box types
+
+-   `display: block`
+
+要素の見た目はブロックのようにフォーマットされる
+100% of parents width
+垂直方向に並べられる
+
+-   `display: inline`
+
+コンテンツは水平方向に並べられる
+コンテンツ領域だけを占領する
+改行を起こさない
+高さと幅を指定できない
+水平方向の padding, margin しか指定できない
+
+-   `display: inline-block`
+
+block と inline のミックスイン
+
+周囲のコンテンツに対して：inline 要素のようにふるまう
+コンテンツ領域のみ占領する
+改行を起こさない
+
+内部的にはブロックレベルのボックスとして振る舞う
+
+#### [Might Conflict] POSITIONING SCHEME
+
+1. Normal flow
+
+デフォルトの振る舞い。
+
+`position: relative`でもある
+
+2. Floats
+
+要素は通常のフローから外れるが、フローの一部であり続ける
+
+周囲の要素のレイアウトに影響を与える
+
+> 要素を包含ブロックの左右どちらかの側に沿うように設置し、テキストやインライン要素がその周りを回りこめるように定義します。
+
+3. Absolute Positioning
+
+要素は通常のフローから外れるが、フローの一部であり続ける
+
+**周囲の要素のレイアウトに影響を与えない**
+
+#### [Might Conflict] stacking context
+
+主に`z-index`で指定することで生成されるコンテキスト
+
+コンテキストはスタックを形成するレイヤーのようなもの
