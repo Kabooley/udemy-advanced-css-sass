@@ -448,7 +448,7 @@ ID > class > element & pseudo
 -   サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
     この辺は順番の話で、SOURCEORDER のところで書いた通り
 
-## [Might Conflict] Good Practice: 常にブラウザのデフォルト値を継承などするために
+##  Good Practice: 常にブラウザのデフォルト値を継承などするために
 
 1. rem を使ってあらゆる部分を root font-size と相対的にする
 
@@ -550,7 +550,7 @@ body {
 
 ```
 
-#### [Might Conflict] BOX MODEL
+####  BOX MODEL
 
 1. box-sizing のデフォルト`content-box`
 
@@ -590,7 +590,7 @@ block と inline のミックスイン
 
 内部的にはブロックレベルのボックスとして振る舞う
 
-#### [Might Conflict] POSITIONING SCHEME
+####  POSITIONING SCHEME
 
 1. Normal flow
 
@@ -612,8 +612,9 @@ block と inline のミックスイン
 
 **周囲の要素のレイアウトに影響を与えない**
 
-#### [Might Conflict] stacking context
+####  stacking context
 
 主に`z-index`で指定することで生成されるコンテキスト
 
 コンテキストはスタックを形成するレイヤーのようなもの
+
