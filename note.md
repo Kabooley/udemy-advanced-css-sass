@@ -905,8 +905,102 @@ https://en.bem.info/
     </body>
 ```
 
-```CSS
-/* before */
+CSSセレクタもこの変更の通りのセレクタに変更するだけ
 
-/* after */
+
+#### SASS `@mixin`
+
+`@mixin`キーワードでCSSファイル内のオブジェクトを定義できる 
+
+DRY原則をCSSに適用できる
+
+いくつかのアイテムを格納したオブジェクトを定義できるようになれば、
+再利用することができる
+
+```CSS
+/* 定義 */
+@mixin clearfix {
+    content: "",
+    clear: both;
+    display: table;
+}
+
+nav {
+    margin: 100px;
+    /* 利用 */
+    @include clearfix;
+}
 ```
+
+関数のように引数をとるmixinも定義できる
+
+```CSS
+
+$text-purple: purple;
+
+/* 引数$colをとる */
+@mixin style-link-text($col) {
+    text-decoration: none;
+    text-transform: translateX(2);
+    /* $colはmixinのなかで変数のように使える */
+    color: $col
+}
+
+a {
+    /* ... */
+    &:link {
+        @include style-link-text($text-purple);
+    }
+}
+```
+
+関数そのものを作ることもできる
+
+```CSS
+@function divide($a, $b) {
+    @return $a / $b;
+}
+
+nav {
+    /* 
+    単位を設けるためのベスト・ぷらくてぃスだそうで
+    */
+    margin: divide(30, 2) * px;
+}
+```
+
+`@extends`という拡張機能もある
+
+```CSS
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+
+.error--serious {
+  border-width: 3px;
+}
+
+/* 解決方法 */
+.error {
+  border: 1px #f00;
+  background-color: #fdd;
+
+  &--serious {
+    @extend .error;
+    border-width: 3px;
+  }
+}
+```
+
+> ページをデザインするときに、あるクラスに別のクラスのすべてのスタイルと、それ自体の特定のスタイルを含める必要がある場合がよくあります。
+> たとえば、BEM方法論では、ブロックまたは要素クラスと同じ要素に属する修飾子クラスを推奨します。ただし、これによりHTMLが乱雑になる可能性があり、両方のクラスを含めるのを忘れるとエラーが発生しやすくなり、マークアップに非セマンティックスタイルの懸念が生じる可能性があります。
+
+> Sassの`@extends <selector>`は呼び出し側に<selector>の内容を継承させる
+
+あんまり@mixinと違いがわからない
+
+あとあまり推奨されていないかも
+
+#### Sass: command line
+
