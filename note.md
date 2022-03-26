@@ -448,7 +448,156 @@ ID > class > element & pseudo
 -   サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
     この辺は順番の話で、SOURCEORDER のところで書いた通り
 
-##  Good Practice: 常にブラウザのデフォルト値を継承などするために
+
+#### 最終的なCSSの値の決定フロー
+
+次のような指定値は最終的にどんな値に決定されるのか？
+
+サンプル：
+
+```html
+<div class="section">
+    <p class="amazing">AMAZING</p>
+</div>
+```
+
+```CSS
+.section {
+    font-size: 1.5rem;
+    width: 280px;
+    background-color: orange;
+}
+
+p {
+    width: 140px;
+    background-color: green;
+}
+
+.amazing {
+    width: 66%;
+}
+```
+
+最終的な値の決定手順：
+
+1. 宣言値
+
+    作成者の指定した値
+
+2. cascade値
+
+    cascade後にその宣言にたいしてもっとも優先度が高い値
+
+3. 特定値
+
+    cascadeしても優先度が高い値がなかった場合に採用される値
+
+4. 計算値
+
+    相対値を絶対値に変換した値
+
+5. 使用済の値
+
+    レイアウトに基づいた計算値
+
+6. 実際の値
+
+    1~5を経て決定された値
+
+これを適用すると
+
+```CSS
+* {
+    /* browser default */
+    font-size: 16px;
+}
+
+.section {
+    /* 
+    1. 1.5rem
+    2. 1.5rem
+    3. 1.5rem
+    4. 24px
+        1.5 * 16px
+    5. 24px
+    6. 24px
+    */
+    font-size: 1.5rem;
+    width: 280px;
+    background-color: orange;
+}
+
+p {
+    /* .sectionからfont-sizeを継承する */
+    /* font-size: 24px; */
+    width: 140px;
+    background-color: green;
+}
+
+.amazing {
+    /* 
+    1. 66%
+    2. 66%
+    3. 66%
+    4. 66%
+    5. .sectionの子要素なので.sectionのwidth280pxに対して66%である
+    つまり184.8px
+    6. 185px
+    */
+    width: 66%;
+}
+```
+
+
+相対値から絶対値へどうやって変換されるのか？
+
+サンプル
+
+```CSS
+html, body {
+    font-size: 16px;
+    width: 80vw;    /* 現在のviewportの幅の80% */
+}
+
+header {
+    font-size: 150%; /* 親要素の計算値 16px * 1.5 = 24px */ 
+    padding: 2em; /* emは親要素のフォントサイズを基準 16 * 2 = 32px */
+    margin-bottom: 10rem; /* remはroot要素のフォントサイズを基準 16 * 10 = 160px */
+    height: 90vh;   /* 現在のviewportの高さの90% */
+    width: 1000px;
+}
+
+.header-child {
+    font-size: 3rem;
+    padding: 10%;  /*親要素に対する相対値 1000px * 0.1 = 100px */
+}
+```
+
+
+知っておくこと：
+
+- 宣言されていない&&継承がない場合に採用される初期値がどのプロパティにもある
+- ブラウザはrootにデフォルトのfont-sizeがある（だいたい16px）
+- %と相対値は常にpxへ変換される
+- 親要素にfont-sizeが指定されていれば、%は親要素のfont-sizeに対してになる
+- 親要素に長さが指定されていれば、%は親要素のwidthに対してになる
+- emは親要素のfont-sizeに対しての相対値
+- emは現在のfont-sizeに対しての相対値
+- remは常にroot要素のfont-sizeに対しての相対値
+
+#### 継承
+
+知っておくこと
+
+- 継承は特定のプロパティに対して親要素から子要素へ行われる
+- テキストに関するプロパティは継承が行われる
+    font-family, font-sizeとか
+- プロパティの計算値は、宣言された値ではなく、継承されるものです
+- プロパティの継承は、そのプロパティが宣言されていなかったら継承される
+- `inherit`キーワードは特定のプロパティに継承を強制する
+- `inherit`キーワードは特定のプロパティの初期値をリセットする
+
+## Good Practice: 常にブラウザのデフォルト値を継承などするために
 
 1. rem を使ってあらゆる部分を root font-size と相対的にする
 
@@ -550,7 +699,8 @@ body {
 
 ```
 
-####  BOX MODEL
+
+#### BOX MODEL
 
 1. box-sizing のデフォルト`content-box`
 
@@ -590,7 +740,7 @@ block と inline のミックスイン
 
 内部的にはブロックレベルのボックスとして振る舞う
 
-####  POSITIONING SCHEME
+#### POSITIONING SCHEME
 
 1. Normal flow
 
@@ -612,9 +762,151 @@ block と inline のミックスイン
 
 **周囲の要素のレイアウトに影響を与えない**
 
-####  stacking context
+#### stacking context
 
 主に`z-index`で指定することで生成されるコンテキスト
 
-コンテキストはスタックを形成するレイヤーのようなもの
+## CSS Architecture Components and BEM
 
+優れた、再利用性と拡張性の高いCSS設計のために
+
+THINK, BUILD, ARCHITECTの流れで設計しよう
+
+
+
+1. THINK: component driven design CSS (CDCSS)
+
+atomic designから影響された設計哲学
+
+コンポーネント駆動設計のCSSでは、
+
+ページをモジュラーコンポーネントに分割する
+
+コンポーネントはインターフェイスを構築するために使用される構成要素である
+
+したがって、
+インターフェイスはページ全体のレイアウトによってまとめられたコンポーネントのコレクションである
+
+コンポーネントは再利用性があるべきである
+
+コンポーネントのライブラリがあるとプロジェクト全体で再利用できる
+
+コンポーネントはページのどこにいても完全に独立していないといけない
+
+つまりコンポーネントは親要素に依存してはならない
+
+
+2. BUILD: Block Element Modifier
+
+
+https://en.bem.info/
+
+> BEM（Block、Element、Modifier）は、Web開発へのコンポーネントベースのアプローチです。
+> その背後にある考え方は、ユーザーインターフェイスを独立したブロックに分割することです。
+> これにより、複雑なUIを使用した場合でも、インターフェイスの開発が簡単かつ迅速になり、コピーして貼り付けることなく既存のコードを再利用できます。
+
+- BLOCK
+
+> 再利用できる機能的に独立したページコンポーネント。 HTMLでは、ブロックはクラス属性で表されます。 特徴： ブロック名は、その状態（「どのように見えるか」-赤または大きい）ではなく、その目的（「それは何ですか？」-メニューまたはボタン）を説明します。
+
+
+- ELEMENT
+
+> ブロックとは別に使用できない複合パーツ。 特徴： 要素名は、その状態（「どのタイプ、またはどのように見えるか」-赤、大きいなど）ではなく、その目的（「これは何ですか？」-アイテム、テキストなど）を説明します。 要素のフルネームの構造はblock-name__element-nameです。要素名は、二重下線（__）でブロック名と区切られます。
+
+```HTML
+<!-- `search-form` block -->
+<form class="search-form">
+    <!-- `input` element in the `search-form` block -->
+    <input class="search-form__input">
+
+    <!-- `button` element in the `search-form` block -->
+    <button class="search-form__button">Search</button>
+</form>
+```
+
+- MODIFIER
+
+> ブロックまたは要素の外観、状態、または動作を定義するエンティティ。 
+
+> 特徴： 修飾子の名前は、その外観（ "What size？"または "Which theme？"など-size_sまたはtheme_islands）、状態（ "他との違いは？"-disabled、focusedなど）およびその状態を表します。動作（「どのように動作しますか？」または「ユーザーにどのように応答しますか？」-directions_left-topなど）。 修飾子名は、単一の下線（_）でブロック名または要素名から区切られます。
+
+```HTML
+<!-- The `search-form` block has the `focused` Boolean modifier -->
+<form class="search-form search-form_focused">
+    <input class="search-form__input">
+
+    <!-- The `button` element has the `disabled` Boolean modifier -->
+    <button class="search-form__button search-form__button_disabled">Search</button>
+</form>
+```
+
+```CSS
+/* ざつにまとめるとこういうこと */
+.block {}
+.block__element {}
+.block__element--modifier {}
+```
+
+
+3. ARCHITECT: 7-1 Pattern
+
+部分的なSassファイルを配置する7つの異なるフォルダーと、
+すべての部分的なファイルを1つの最終的にコンパイルされたCSSスタイルシートにインポートする
+1​​つのメインSassファイルがあります。
+
+このメソッドで使用される7つのフォルダーは、
+基本的な製品定義を配置するベースフォルダー、
+コンポーネントごとに1つのファイルがあるコンポーネントフォルダー、
+レイアウトフォルダー、
+プロジェクト、プロジェクトの特定のページのスタイルがあるpagesフォルダー、
+さまざまなビジュアルテーマを実装する場合はthemesフォルダー、
+変数やミックスインなどのCSSを出力しないコードを配置するabstractsフォルダー、
+そして最後に、すべてのサードパーティCSSが配置されるvendorsフォルダー。
+
+
+#### 実践：BEMをNATOURSプロジェクトに適用してみる
+
+
+```HTML
+<!-- before -->
+    <body>
+        <div class="header">
+            <div class="logo-box">
+                <img src="img/logo-white.png" alt="Logo" class="logo"/>
+            </div>
+
+            <div class="text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary-main">Outdoors</span>
+                    <span class="heading-primary-sub">Is where life happens</span>
+                </h1>
+
+                <a href="#" class="btn btn-white btn-animated">Discover our tours</a>
+            </div>
+        </div>
+    </body>
+<!-- after -->
+    <body>
+        <div class="header">
+            <div class="header__logo-box">
+                <img src="img/logo-white.png" alt="Logo" class="header__logo"/>
+            </div>
+
+            <div class="header__text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary--main">Outdoors</span>
+                    <span class="heading-primary--sub">Is where life happens</span>
+                </h1>
+
+                <a href="#" class="btn btn--white btn--animated">Discover our tours</a>
+            </div>
+        </div>
+    </body>
+```
+
+```CSS
+/* before */
+
+/* after */
+```
