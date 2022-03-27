@@ -1004,3 +1004,180 @@ nav {
 
 #### Sass: command line
 
+`node-sass <コンパイル元> <出力先>`
+
+```bash
+# -wでnodemonみたいに常に変更をコンパイルし続ける
+$ node-sass sass/main.scss css/style.css -w
+```
+
+
+#### Sass: 独自の構文
+
+同じネスト内であれば、
+そのネストのセレクタと関連するセレクタを内部に追加できる
+
+`&`でセレクタ名を省略できる
+
+```CSS
+/* before */
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  /* ブラウザのウィンドウをリサイズしたときにどこを基準に拡縮するのか指定する */
+  background-position: top;
+
+  /* shapeを変形させるﾌﾟﾛﾊﾟﾃｨ */
+  /* ４頂点：左上、右上、右下、左下 */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+}
+
+.header__logo {
+  height: 3.5rem;
+}
+
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-align: center;
+}
+
+/* after */
+
+.header {
+  position: relative;
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover;
+  /* ブラウザのウィンドウをリサイズしたときにどこを基準に拡縮するのか指定する */
+  background-position: top;
+
+  /* shapeを変形させるﾌﾟﾛﾊﾟﾃｨ */
+  /* ４頂点：左上、右上、右下、左下 */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+  
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
+
+```
+
+#### 7-1 Pattern
+
+先までのmain.scssに記述したすべてのセレクタを
+7-1パターンにあてはめて各ファイルに分割していく
+
+```CSS
+/* main.scss */
+
+/* 全称セレクタやhtml, bodyなどの定義 */
+@import "base/base";
+/* @keyframesなどｱﾆﾒｰｼｮﾝにかかわる定義 */
+@import "base/animations";
+/* 文字セレクタにかかわる定義 */
+/* 今回は.heading-primaryがこれに当たる */
+@import "base/typography";
+/*  */
+@import "base/utilities";
+/* @functions定義 */
+@import "abstracts/functions";
+/* @mixins定義 */
+@import "abstracts/mixins";
+/* $~など変数の定義 */
+@import "abstracts/variables";
+/* .headerなど */
+@import "pages/home";
+/* パーツなど */
+@import "components/button";
+
+```
+
+## BASIC RESPONSIVE DESIGN PRINCIPLES
+
+基本レスポンシブデザイン原則:
+
+- Fluid layouts
+- Responsive units
+- Flexible images
+- Media queries
+
+Summary:
+
+1. Fluid layouts
+
+- 現在のviewport(幅や高さ)に適応することを可能とさせること
+そのために...
+- %をつかってpxは使わない
+- `max-width`を`width`の代わりに使う
+
+2. Responsive units
+
+- `rem`を`px`の代わりに使うこと
+- レイアウトを容易にそして自動的に拡縮可能にすること
+
+
+3. Flexible images
+
+- デフォルトとして、viewportの変化に対してimageは自動的に拡縮させない
+- imageの寸法に対して常に%を使うこと
+`max-width`も使うこと
+
+4. Media queries
+
+特定のviewportにおけるwidthを変更させること
+
+
+Details:
+
+Fluid Layouts
+
+floatレイアウトはもはや古い技術として淘汰されつつある
+
+代わりにflexbox, gridが現代的
+
+flexboxは1次元レイアウトを構築するのに向いている
+
+css gridは2次元レイアウトを構築するのに向いている
+
+floatを学習することはそれぞれの特徴を理解するのに役立つ
+
+あと、
+
+floatレイアウトを理解しないと古い技術を使う現場で困る
+
