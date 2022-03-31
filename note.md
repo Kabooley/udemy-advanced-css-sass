@@ -2,8 +2,8 @@
 
 ## 目次
 
--   [basic-tips](#basic-tips)
--   [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
+- [basic-tips](#basic-tips)
+- [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
 
 ## basic-tips
 
@@ -44,8 +44,8 @@ CSS ボックスモデルの既定によると、
 
 ```html
 <link
-    href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
-    rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+  rel="stylesheet"
 />
 ```
 
@@ -216,8 +216,8 @@ translateX -100px -> 0
 
 デフォを制御：
 
--   リンクが踏まれる前は青色であること
--   リンクが踏まれたら紫色になること
+- リンクが踏まれる前は青色であること
+- リンクが踏まれたら紫色になること
 
 ```CSS
 
@@ -330,21 +330,21 @@ translateX -100px -> 0
 
 ## web サイトを構築する際の 3 つの重要な柱
 
--   レスポンシブデザイン
--   メンテナブル/スケーラブル
--   web パフォーマンス
+- レスポンシブデザイン
+- メンテナブル/スケーラブル
+- web パフォーマンス
 
 #### レスポンシブデザイン
 
--   fluid layout
--   Media queries
--   responsive images
--   correct utils
--   Desktop-first vs modile-first
+- fluid layout
+- Media queries
+- responsive images
+- correct utils
+- Desktop-first vs modile-first
 
 #### メンテナブル/スケーラブル
 
--   クリーンで再利用性が高いとか命名方法とか普通のこと
+- クリーンで再利用性が高いとか命名方法とか普通のこと
 
 #### web パフォーマンス
 
@@ -378,14 +378,14 @@ https://developer.mozilla.org/ja/docs/Web/CSS/Cascade
 
 stylesheet にはいくつか種類があり、
 
--   ユーザエージェントスタイルシート
-    ブラウザの既存のスタイルを提供するスタイルシート
+- ユーザエージェントスタイルシート
+  ブラウザの既存のスタイルを提供するスタイルシート
 
--   作成者スタイルシート
-    特定の web ページのスタイルを定義するスタイルシートである
+- 作成者スタイルシート
+  特定の web ページのスタイルを定義するスタイルシートである
 
--   ユーザスタイルシート
-    web サイトを利用するユーザが使い勝手などを調整できるスタイルシート
+- ユーザスタイルシート
+  web サイトを利用するユーザが使い勝手などを調整できるスタイルシート
 
 cascade 順 (定義の適用優先度):
 
@@ -435,21 +435,20 @@ ID > class > element & pseudo
 
 #### cascade で覚えておくこと
 
--   `!important`はもっとも優先度が高く扱われる
--   しかし`!important`はどうしても競合が解決しないときに最後の手段として用いるべき
-    バグの温床になりがち
+- `!important`はもっとも優先度が高く扱われる
+- しかし`!important`はどうしても競合が解決しないときに最後の手段として用いるべき
+  バグの温床になりがち
 
--   HTML 内で作成されるインラインスタイルは外部スタイルよりも常に優先される
-    インラインスタイルは悪い習慣です
+- HTML 内で作成されるインラインスタイルは外部スタイルよりも常に優先される
+  インラインスタイルは悪い習慣です
 
--   詳細度をあげるには id か class で CSS 宣言しましょう
--   全称セレクタは詳細度を持たない（優先度がない）
--   セレクタの順番よりも詳細度を信頼しましょう
--   サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
-    この辺は順番の話で、SOURCEORDER のところで書いた通り
+- 詳細度をあげるには id か class で CSS 宣言しましょう
+- 全称セレクタは詳細度を持たない（優先度がない）
+- セレクタの順番よりも詳細度を信頼しましょう
+- サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
+  この辺は順番の話で、SOURCEORDER のところで書いた通り
 
-
-#### 最終的なCSSの値の決定フロー
+#### 最終的な CSS の値の決定フロー
 
 次のような指定値は最終的にどんな値に決定されるのか？
 
@@ -457,7 +456,7 @@ ID > class > element & pseudo
 
 ```html
 <div class="section">
-    <p class="amazing">AMAZING</p>
+  <p class="amazing">AMAZING</p>
 </div>
 ```
 
@@ -482,27 +481,27 @@ p {
 
 1. 宣言値
 
-    作成者の指定した値
+   作成者の指定した値
 
-2. cascade値
+2. cascade 値
 
-    cascade後にその宣言にたいしてもっとも優先度が高い値
+   cascade 後にその宣言にたいしてもっとも優先度が高い値
 
 3. 特定値
 
-    cascadeしても優先度が高い値がなかった場合に採用される値
+   cascade しても優先度が高い値がなかった場合に採用される値
 
 4. 計算値
 
-    相対値を絶対値に変換した値
+   相対値を絶対値に変換した値
 
 5. 使用済の値
 
-    レイアウトに基づいた計算値
+   レイアウトに基づいた計算値
 
 6. 実際の値
 
-    1~5を経て決定された値
+   1~5 を経て決定された値
 
 これを適用すると
 
@@ -513,7 +512,7 @@ p {
 }
 
 .section {
-    /* 
+    /*
     1. 1.5rem
     2. 1.5rem
     3. 1.5rem
@@ -535,7 +534,7 @@ p {
 }
 
 .amazing {
-    /* 
+    /*
     1. 66%
     2. 66%
     3. 66%
@@ -548,7 +547,6 @@ p {
 }
 ```
 
-
 相対値から絶対値へどうやって変換されるのか？
 
 サンプル
@@ -560,7 +558,7 @@ html, body {
 }
 
 header {
-    font-size: 150%; /* 親要素の計算値 16px * 1.5 = 24px */ 
+    font-size: 150%; /* 親要素の計算値 16px * 1.5 = 24px */
     padding: 2em; /* emは親要素のフォントサイズを基準 16 * 2 = 32px */
     margin-bottom: 10rem; /* remはroot要素のフォントサイズを基準 16 * 10 = 160px */
     height: 90vh;   /* 現在のviewportの高さの90% */
@@ -573,17 +571,16 @@ header {
 }
 ```
 
-
 知っておくこと：
 
 - 宣言されていない&&継承がない場合に採用される初期値がどのプロパティにもある
-- ブラウザはrootにデフォルトのfont-sizeがある（だいたい16px）
-- %と相対値は常にpxへ変換される
-- 親要素にfont-sizeが指定されていれば、%は親要素のfont-sizeに対してになる
-- 親要素に長さが指定されていれば、%は親要素のwidthに対してになる
-- emは親要素のfont-sizeに対しての相対値
-- emは現在のfont-sizeに対しての相対値
-- remは常にroot要素のfont-sizeに対しての相対値
+- ブラウザは root にデフォルトの font-size がある（だいたい 16px）
+- %と相対値は常に px へ変換される
+- 親要素に font-size が指定されていれば、%は親要素の font-size に対してになる
+- 親要素に長さが指定されていれば、%は親要素の width に対してになる
+- em は親要素の font-size に対しての相対値
+- em は現在の font-size に対しての相対値
+- rem は常に root 要素の font-size に対しての相対値
 
 #### 継承
 
@@ -591,7 +588,7 @@ header {
 
 - 継承は特定のプロパティに対して親要素から子要素へ行われる
 - テキストに関するプロパティは継承が行われる
-    font-family, font-sizeとか
+  font-family, font-size とか
 - プロパティの計算値は、宣言された値ではなく、継承されるものです
 - プロパティの継承は、そのプロパティが宣言されていなかったら継承される
 - `inherit`キーワードは特定のプロパティに継承を強制する
@@ -699,7 +696,6 @@ body {
 
 ```
 
-
 #### BOX MODEL
 
 1. box-sizing のデフォルト`content-box`
@@ -716,13 +712,13 @@ width = specified width;
 
 3. box types
 
--   `display: block`
+- `display: block`
 
 要素の見た目はブロックのようにフォーマットされる
 100% of parents width
 垂直方向に並べられる
 
--   `display: inline`
+- `display: inline`
 
 コンテンツは水平方向に並べられる
 コンテンツ領域だけを占領する
@@ -730,7 +726,7 @@ width = specified width;
 高さと幅を指定できない
 水平方向の padding, margin しか指定できない
 
--   `display: inline-block`
+- `display: inline-block`
 
 block と inline のミックスイン
 
@@ -768,17 +764,15 @@ block と inline のミックスイン
 
 ## CSS Architecture Components and BEM
 
-優れた、再利用性と拡張性の高いCSS設計のために
+優れた、再利用性と拡張性の高い CSS 設計のために
 
-THINK, BUILD, ARCHITECTの流れで設計しよう
-
-
+THINK, BUILD, ARCHITECT の流れで設計しよう
 
 1. THINK: component driven design CSS (CDCSS)
 
-atomic designから影響された設計哲学
+atomic design から影響された設計哲学
 
-コンポーネント駆動設計のCSSでは、
+コンポーネント駆動設計の CSS では、
 
 ページをモジュラーコンポーネントに分割する
 
@@ -795,24 +789,21 @@ atomic designから影響された設計哲学
 
 つまりコンポーネントは親要素に依存してはならない
 
-
 2. BUILD: Block Element Modifier
-
 
 https://en.bem.info/
 
-> BEM（Block、Element、Modifier）は、Web開発へのコンポーネントベースのアプローチです。
+> BEM（Block、Element、Modifier）は、Web 開発へのコンポーネントベースのアプローチです。
 > その背後にある考え方は、ユーザーインターフェイスを独立したブロックに分割することです。
-> これにより、複雑なUIを使用した場合でも、インターフェイスの開発が簡単かつ迅速になり、コピーして貼り付けることなく既存のコードを再利用できます。
+> これにより、複雑な UI を使用した場合でも、インターフェイスの開発が簡単かつ迅速になり、コピーして貼り付けることなく既存のコードを再利用できます。
 
 - BLOCK
 
-> 再利用できる機能的に独立したページコンポーネント。 HTMLでは、ブロックはクラス属性で表されます。 特徴： ブロック名は、その状態（「どのように見えるか」-赤または大きい）ではなく、その目的（「それは何ですか？」-メニューまたはボタン）を説明します。
-
+> 再利用できる機能的に独立したページコンポーネント。 HTML では、ブロックはクラス属性で表されます。 特徴： ブロック名は、その状態（「どのように見えるか」-赤または大きい）ではなく、その目的（「それは何ですか？」-メニューまたはボタン）を説明します。
 
 - ELEMENT
 
-> ブロックとは別に使用できない複合パーツ。 特徴： 要素名は、その状態（「どのタイプ、またはどのように見えるか」-赤、大きいなど）ではなく、その目的（「これは何ですか？」-アイテム、テキストなど）を説明します。 要素のフルネームの構造はblock-name__element-nameです。要素名は、二重下線（__）でブロック名と区切られます。
+> ブロックとは別に使用できない複合パーツ。 特徴： 要素名は、その状態（「どのタイプ、またはどのように見えるか」-赤、大きいなど）ではなく、その目的（「これは何ですか？」-アイテム、テキストなど）を説明します。 要素のフルネームの構造は block-name**element-name です。要素名は、二重下線（**）でブロック名と区切られます。
 
 ```HTML
 <!-- `search-form` block -->
@@ -827,9 +818,9 @@ https://en.bem.info/
 
 - MODIFIER
 
-> ブロックまたは要素の外観、状態、または動作を定義するエンティティ。 
+> ブロックまたは要素の外観、状態、または動作を定義するエンティティ。
 
-> 特徴： 修飾子の名前は、その外観（ "What size？"または "Which theme？"など-size_sまたはtheme_islands）、状態（ "他との違いは？"-disabled、focusedなど）およびその状態を表します。動作（「どのように動作しますか？」または「ユーザーにどのように応答しますか？」-directions_left-topなど）。 修飾子名は、単一の下線（_）でブロック名または要素名から区切られます。
+> 特徴： 修飾子の名前は、その外観（ "What size？"または "Which theme？"など-size*s または theme_islands）、状態（ "他との違いは？"-disabled、focused など）およびその状態を表します。動作（「どのように動作しますか？」または「ユーザーにどのように応答しますか？」-directions_left-top など）。 修飾子名は、単一の下線（*）でブロック名または要素名から区切られます。
 
 ```HTML
 <!-- The `search-form` block has the `focused` Boolean modifier -->
@@ -848,25 +839,22 @@ https://en.bem.info/
 .block__element--modifier {}
 ```
 
-
 3. ARCHITECT: 7-1 Pattern
 
-部分的なSassファイルを配置する7つの異なるフォルダーと、
-すべての部分的なファイルを1つの最終的にコンパイルされたCSSスタイルシートにインポートする
-1​​つのメインSassファイルがあります。
+部分的な Sass ファイルを配置する 7 つの異なるフォルダーと、
+すべての部分的なファイルを 1 つの最終的にコンパイルされた CSS スタイルシートにインポートする
+1​​ つのメイン Sass ファイルがあります。
 
-このメソッドで使用される7つのフォルダーは、
+このメソッドで使用される 7 つのフォルダーは、
 基本的な製品定義を配置するベースフォルダー、
-コンポーネントごとに1つのファイルがあるコンポーネントフォルダー、
+コンポーネントごとに 1 つのファイルがあるコンポーネントフォルダー、
 レイアウトフォルダー、
-プロジェクト、プロジェクトの特定のページのスタイルがあるpagesフォルダー、
-さまざまなビジュアルテーマを実装する場合はthemesフォルダー、
-変数やミックスインなどのCSSを出力しないコードを配置するabstractsフォルダー、
-そして最後に、すべてのサードパーティCSSが配置されるvendorsフォルダー。
+プロジェクト、プロジェクトの特定のページのスタイルがある pages フォルダー、
+さまざまなビジュアルテーマを実装する場合は themes フォルダー、
+変数やミックスインなどの CSS を出力しないコードを配置する abstracts フォルダー、
+そして最後に、すべてのサードパーティ CSS が配置される vendors フォルダー。
 
-
-#### 実践：BEMをNATOURSプロジェクトに適用してみる
-
+#### 実践：BEM を NATOURS プロジェクトに適用してみる
 
 ```HTML
 <!-- before -->
@@ -905,14 +893,13 @@ https://en.bem.info/
     </body>
 ```
 
-CSSセレクタもこの変更の通りのセレクタに変更するだけ
-
+CSS セレクタもこの変更の通りのセレクタに変更するだけ
 
 #### SASS `@mixin`
 
-`@mixin`キーワードでCSSファイル内のオブジェクトを定義できる 
+`@mixin`キーワードで CSS ファイル内のオブジェクトを定義できる
 
-DRY原則をCSSに適用できる
+DRY 原則を CSS に適用できる
 
 いくつかのアイテムを格納したオブジェクトを定義できるようになれば、
 再利用することができる
@@ -932,7 +919,7 @@ nav {
 }
 ```
 
-関数のように引数をとるmixinも定義できる
+関数のように引数をとる mixin も定義できる
 
 ```CSS
 
@@ -962,7 +949,7 @@ a {
 }
 
 nav {
-    /* 
+    /*
     単位を設けるためのベスト・ぷらくてぃスだそうで
     */
     margin: divide(30, 2) * px;
@@ -994,11 +981,11 @@ nav {
 ```
 
 > ページをデザインするときに、あるクラスに別のクラスのすべてのスタイルと、それ自体の特定のスタイルを含める必要がある場合がよくあります。
-> たとえば、BEM方法論では、ブロックまたは要素クラスと同じ要素に属する修飾子クラスを推奨します。ただし、これによりHTMLが乱雑になる可能性があり、両方のクラスを含めるのを忘れるとエラーが発生しやすくなり、マークアップに非セマンティックスタイルの懸念が生じる可能性があります。
+> たとえば、BEM 方法論では、ブロックまたは要素クラスと同じ要素に属する修飾子クラスを推奨します。ただし、これにより HTML が乱雑になる可能性があり、両方のクラスを含めるのを忘れるとエラーが発生しやすくなり、マークアップに非セマンティックスタイルの懸念が生じる可能性があります。
 
-> Sassの`@extends <selector>`は呼び出し側に<selector>の内容を継承させる
+> Sass の`@extends <selector>`は呼び出し側に<selector>の内容を継承させる
 
-あんまり@mixinと違いがわからない
+あんまり@mixin と違いがわからない
 
 あとあまり推奨されていないかも
 
@@ -1010,7 +997,6 @@ nav {
 # -wでnodemonみたいに常に変更をコンパイルし続ける
 $ node-sass sass/main.scss css/style.css -w
 ```
-
 
 #### Sass: 独自の構文
 
@@ -1086,7 +1072,7 @@ $ node-sass sass/main.scss css/style.css -w
   &__logo {
     height: 3.5rem;
   }
-  
+
   &__text-box {
     position: absolute;
     top: 40%;
@@ -1100,8 +1086,8 @@ $ node-sass sass/main.scss css/style.css -w
 
 #### 7-1 Pattern
 
-先までのmain.scssに記述したすべてのセレクタを
-7-1パターンにあてはめて各ファイルに分割していく
+先までの main.scss に記述したすべてのセレクタを
+7-1 パターンにあてはめて各ファイルに分割していく
 
 ```CSS
 /* main.scss */
@@ -1141,9 +1127,9 @@ Summary:
 
 1. Fluid layouts
 
-- 現在のviewport(幅や高さ)に適応することを可能とさせること
-そのために...
-- %をつかってpxは使わない
+- 現在の viewport(幅や高さ)に適応することを可能とさせること
+  そのために...
+- %をつかって px は使わない
 - `max-width`を`width`の代わりに使う
 
 2. Responsive units
@@ -1151,36 +1137,184 @@ Summary:
 - `rem`を`px`の代わりに使うこと
 - レイアウトを容易にそして自動的に拡縮可能にすること
 
-
 3. Flexible images
 
-- デフォルトとして、viewportの変化に対してimageは自動的に拡縮させない
-- imageの寸法に対して常に%を使うこと
-`max-width`も使うこと
+- デフォルトとして、viewport の変化に対して image は自動的に拡縮させない
+- image の寸法に対して常に%を使うこと
+  `max-width`も使うこと
 
 4. Media queries
 
-特定のviewportにおけるwidthを変更させること
-
+特定の viewport における width を変更させること
 
 Details:
 
 Fluid Layouts
 
-floatレイアウトはもはや古い技術として淘汰されつつある
+float レイアウトはもはや古い技術として淘汰されつつある
 
-代わりにflexbox, gridが現代的
+代わりに flexbox, grid が現代的
 
-flexboxは1次元レイアウトを構築するのに向いている
+flexbox は 1 次元レイアウトを構築するのに向いている
 
-css gridは2次元レイアウトを構築するのに向いている
+css grid は 2 次元レイアウトを構築するのに向いている
 
-floatを学習することはそれぞれの特徴を理解するのに役立つ
+float を学習することはそれぞれの特徴を理解するのに役立つ
 
 あと、
 
-floatレイアウトを理解しないと古い技術を使う現場で困る
+float レイアウトを理解しないと古い技術を使う現場で困る
+
+## Learn Grid Layout using float
+
+- `max-width`:
+
+max-width は、十分な空きスペースがある場合は指定した幅になりますが、
+
+十分な幅がない場合は、基本的にビューポートがここで指定した幅よりも小さい場合、
+
+つまりこの場合はビューポートが 114rem より小さい場合、ビューポートは、使用可能なスペースの 100％を埋めるだけです。
+
+- 一番最後の要素以外すべてに適用させたいとき
+
+```SCSS
+.row {
+  max-width: $grid-width;
+  background-color: #eee;
+  margin: 0 auto;
+
+//   適用される要素のうち一番最後の要素以外
+  &:not(:last-child) {
+    margin-bottom: $gutter-vartical;
+  }
+
+  .col-1-of-2 {
+      width: calc((100% - #{$gutter-horizontal}) / 2);
+  }
+}
+```
+
+- SASSのテンプレートリテラル
+
+```SCSS
+  .col-1-of-2 {
+      width: calc((100% - #{$gutter-horizontal}) / 2);
+  }
+```
+
+`#{}`で囲えば変数が使える
 
 
-## Learn Grid Layout
+#### clearfix と float
 
+clearfix ってなに？
+
+`clear`:
+
+> clear は CSS のプロパティで、要素をその前にある浮動要素の下に移動 (clear) する必要があるかどうかを設定します。
+> clear プロパティは、浮動要素と非浮動要素のどちらにも適用されます。
+
+```SCSS
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+```
+
+疑似要素`::after`を`display: table`で表示する
+
+`clear: both`で、**要素は先行する左右両方の浮動要素と切り離されて下に移動する**
+
+つまり、
+
+float を解除したいところで`clearfix`を付けると
+float から切り離すことができる
+
+以下の例では、
+
+すべての`div.row`に`clearfix`が適用されるので
+
+`div.row`には float が解除される
+
+```SCSS
+.row {
+  max-width: $grid-width;
+  background-color: #eee;
+  margin: 0 auto;
+
+  //   適用される要素のうち一番最後の要素以外
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
+
+  @include clearfix;
+
+  .col-1-of-2 {
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+    background-color: orangered;
+    float: left;
+
+    // 最後の要素以外margin-rigthを設ける
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+}
+
+```
+
+#### 共通のclass名のスタイルを一括で定義したいとき
+
+たとえばどのclass名も`col-`で始まる時
+
+そのすべてのclass名で共通のスタイルを定義したかったら
+
+こんな感じにする
+
+```SCSS
+// before
+{
+    // ...
+  .col-1-of-2 {
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+      // ~~一括で定義したい~~
+    background-color: orangered;
+    float: left;
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+    // ~~~~~~~~~~~~~~~~~~~~
+  }
+
+  .col-1-of-3 {
+      width: calc((100% - #{$gutter-horizontal}) / 3);
+  }
+  .col-1-of-4 {
+      width: calc((100% - #{$gutter-horizontal}) / 4);
+  }
+}
+
+// after
+{
+[class^="col-"] {
+    // ...共通のスタイルを定義する
+    background-color: orangered;
+    float: left;
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+}
+  .col-1-of-2 {
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+  }
+  .col-1-of-3 {
+      width: calc((100% - #{$gutter-horizontal}) / 3);
+  }
+  .col-1-of-4 {
+      width: calc((100% - #{$gutter-horizontal}) / 4);
+  }
+}
+```
