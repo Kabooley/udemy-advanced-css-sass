@@ -1,5 +1,4 @@
 @import "base/base";
-@import "base/animations";
 @import "base/typography";
 @import "base/utilities";
 @import "abstracts/functions";
@@ -7,6 +6,9 @@
 @import "abstracts/variables";
 @import "pages/home";
 @import "components/button";
+@import "layout/grid";
+@import "layout/header";
+@import "base/animations";
 
 /*
 COLORS:
@@ -16,4 +18,3 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
-
