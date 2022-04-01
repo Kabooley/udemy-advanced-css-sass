@@ -39,6 +39,17 @@ body {
     animation-duration: 1s;
     animation-timing-function: ease-out; }
 
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right); }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh; }
+
 .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
