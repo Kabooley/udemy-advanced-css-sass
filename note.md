@@ -3,6 +3,7 @@
 ## 目次
 
 - [basic-tips](#basic-tips)
+- [SASS-basic](#SASS-basic)
 - [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
 - [EMMET-Tips](#EMMET-Tips)
 - [お役立ち](#お役立ち)
@@ -328,6 +329,57 @@ translateX -100px -> 0
 }
 ```
 
+## SASS-basic
+
+#### ネスト
+
+
+たとえば次のようなclass名を以下のようにネストで固まらせることができる
+
+`.composition`
+`composition__photo`
+`composition__photo--p1`
+という、
+`composition`で始まるclass名を同じネスト内で定義するならば
+`composition`の部分は`&`で省略できる
+
+
+```html
+
+<div class="composition">
+    <img src="img/nat-1.jpg" alt="photo 1" class="composition__photo composition__photo--p1">
+    <img src="img/nat-2.jpg" alt="photo 2" class="composition__photo composition__photo--p2">
+    <img src="img/nat-3.jpg" alt="photo 3" class="composition__photo composition__photo--p3"></div> 
+</div>
+```
+
+```SCSS
+.composition {
+    position: relative;
+    
+    &__photo {
+        width: 55%;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+        border-radius: 2px;
+        position: absolute;
+
+        &--p1 {
+            left: 0;
+            top: -2rem;
+        }
+
+        &--p2 {
+            right: 0;
+            top: 2rem;
+        }
+
+        &--p3 {
+            left: 20%;
+            top: 10rem;
+        }
+    }
+}
+```
 ## CSS BEHIND THE SCENES
 
 ## web サイトを構築する際の 3 つの重要な柱

@@ -1,6 +1,6 @@
 .row {
   max-width: $grid-width;
-  background-color: #eee;
+//   background-color: #eee;
   margin: 0 auto;
 
   //   適用される要素のうち一番最後の要素以外
@@ -12,7 +12,7 @@
 
   [class^="col-"] {
     // ...共通のスタイルを定義する
-    background-color: orangered;
+    // background-color: orangered;
     float: left;
     &:not(:last-child) {
       margin-right: $gutter-horizontal;
