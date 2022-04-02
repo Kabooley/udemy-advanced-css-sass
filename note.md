@@ -4,6 +4,8 @@
 
 - [basic-tips](#basic-tips)
 - [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
+- [EMMET-Tips](#EMMET-Tips)
+- [お役立ち](#お役立ち)
 
 ## basic-tips
 
@@ -1429,3 +1431,37 @@ the inline element's influence.</div>
 すぐに欲しいスタイルを追加できる
 
 インスタントな存在である
+
+## EMMET-Tips
+
+`.composition>(img.composition_photo.composition_photo-p1)*3`
+
+で次が出力される
+
+```HTML
+
+<div class="composition">
+    <img src="" alt="" class="composition_photo composition_photo-p1">
+    <img src="" alt="" class="composition_photo composition_photo-p1">
+    <img src="" alt="" class="composition_photo composition_photo-p1">
+</div>
+```
+
+
+## お役立ち
+
+- ダミーテキストを生成してくれるサービス
+
+[Lorem Ipsum](#https://www.lipsum.com/)
+
+- 文字コード一覧
+
+たとえば矢印とか表示してくれる文字コードを探すのにいい
+
+講師のページ
+
+https://css-tricks.com/snippets/html/glyphs/
+
+
+
+
