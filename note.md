@@ -1114,6 +1114,12 @@ $ node-sass sass/main.scss css/style.css -w
 
 ```
 
+**順番は重要である**
+
+たとえば後のほうでimportするscssファイルで変数を使う場合、
+
+先に変数をまとめたscssファイルをimportしておく必要がある
+
 ## BASIC RESPONSIVE DESIGN PRINCIPLES
 
 基本レスポンシブデザイン原則:
@@ -1319,3 +1325,107 @@ float から切り離すことができる
 }
 ```
 
+#### inline-block要素を中央に配置する
+
+> このheading-secondaryを覚えておいてください。これはインラインブロックとして定義されているため、親をtext-align-centerに設定すると、その中のインラインブロック要素はテキストとして扱われるため、親の中央に配置されます
+
+```html
+<section class="section-about">
+    <div class="u-center-text">
+        <h2 class="heading-secondary">
+            Exciting tours for adventure
+        </h2>
+    </div>
+</section>
+```
+
+```CSS
+.u-center-text {
+    text-align: center;
+}
+
+.heading-secondary {
+    display: inline-block;
+}
+```
+
+`text-align`はブロック要素または表セルボックスの水平方向の配置を設定します
+
+`inline-block`はブロック要素を生成しているので
+
+これの配置を操作できるようになる
+
+
+- インライン要素とは
+
+https://developer.mozilla.org/ja/docs/Web/HTML/Inline_elements
+
+たとえば一塊の文章を表示するとして
+
+その文章のうち特定の文章だけ太字に表示したいとする
+
+このとき文章の流れに変更をもたらさずに
+
+その文章を囲得る要素をインライン要素と呼ぶ
+
+```HTML
+<div>The following span is an <span class="highlight">inline element</span>;
+its background has been colored to display both the beginning and end of
+the inline element's influence.</div>
+```
+
+上記の例では`span`はテキストの流れを変更しないので
+
+改行などが起こらない
+
+```HTML
+```
+
+一方`p`要素で囲うとこれは改行をもたらし
+
+つまりテキストの流れを分断する
+
+これらの結果が異なるのは
+
+`span`がインライン要素で`p`がブロック要素だからである
+
+
+#### utilitiesクラスの利用の仕方
+
+`.u-center-text`が定義されているdivに対してmargin-bottomを追加したい...
+
+そんなとき。
+
+直接`.u-center-text`へ追加するハードコーディングを避けたいなら、
+
+いつでも追加できるようにあらかじめ定義してあるやつを追加すればいい
+
+```html
+<!-- u-margin-bottom-8というCSSを追加した -->
+<div class="u-center-text u-margin-bottom-8">
+    <h2 class="heading-secondary">
+        Exciting tours for adventure
+    </h2>
+</div>
+```
+
+```CSS
+.u-margin-bottom-8 {
+    margin-bottom: 8rem;
+}
+```
+
+こうすればあとから簡単に着脱できるし
+
+`.u-center-text`に`margin-bottom`を追加しなくて済むことで
+
+`.u-center-text`の再利用性を損なわずに済む
+
+
+再利用性が高く、追加しやすい定義群
+
+本来のスタイルが定義されている要素にutilitiesのクラス名を追加することで
+
+すぐに欲しいスタイルを追加できる
+
+インスタントな存在である
