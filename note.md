@@ -1484,6 +1484,15 @@ the inline element's influence.</div>
 
 インスタントな存在である
 
+## CSS Tips: Iconを使う時はSVGを使うこと
+
+ページの拡大縮小に影響を受けるので
+PNGだと解像度が変わってしまったりする
+
+SVGなら問題なし
+
+
+
 ## EMMET-Tips
 
 `.composition>(img.composition_photo.composition_photo-p1)*3`
@@ -1515,5 +1524,6 @@ the inline element's influence.</div>
 https://css-tricks.com/snippets/html/glyphs/
 
 
+- Linea Icon free icon
 
-
+https://www.linea.is/
