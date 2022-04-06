@@ -333,30 +333,28 @@ translateX -100px -> 0
 
 #### ネスト
 
-
-たとえば次のようなclass名を以下のようにネストで固まらせることができる
+たとえば次のような class 名を以下のようにネストで固まらせることができる
 
 `.composition`
 `composition__photo`
 `composition__photo--p1`
 という、
-`composition`で始まるclass名を同じネスト内で定義するならば
+`composition`で始まる class 名を同じネスト内で定義するならば
 `composition`の部分は`&`で省略できる
-
 
 ```html
 
 <div class="composition">
     <img src="img/nat-1.jpg" alt="photo 1" class="composition__photo composition__photo--p1">
     <img src="img/nat-2.jpg" alt="photo 2" class="composition__photo composition__photo--p2">
-    <img src="img/nat-3.jpg" alt="photo 3" class="composition__photo composition__photo--p3"></div> 
+    <img src="img/nat-3.jpg" alt="photo 3" class="composition__photo composition__photo--p3"></div>
 </div>
 ```
 
 ```SCSS
 .composition {
     position: relative;
-    
+
     &__photo {
         width: 55%;
         box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
@@ -380,6 +378,7 @@ translateX -100px -> 0
     }
 }
 ```
+
 ## CSS BEHIND THE SCENES
 
 ## web サイトを構築する際の 3 つの重要な柱
@@ -1170,9 +1169,9 @@ $ node-sass sass/main.scss css/style.css -w
 
 **順番は重要である**
 
-たとえば後のほうでimportするscssファイルで変数を使う場合、
+たとえば後のほうで import する scss ファイルで変数を使う場合、
 
-先に変数をまとめたscssファイルをimportしておく必要がある
+先に変数をまとめた scss ファイルを import しておく必要がある
 
 ## BASIC RESPONSIVE DESIGN PRINCIPLES
 
@@ -1254,7 +1253,7 @@ max-width は、十分な空きスペースがある場合は指定した幅に�
 }
 ```
 
-- SASSのテンプレートリテラル
+- SASS のテンプレートリテラル
 
 ```SCSS
   .col-1-of-2 {
@@ -1263,7 +1262,6 @@ max-width は、十分な空きスペースがある場合は指定した幅に�
 ```
 
 `#{}`で囲えば変数が使える
-
 
 #### clearfix と float
 
@@ -1326,11 +1324,11 @@ float から切り離すことができる
 
 ```
 
-#### 共通のclass名のスタイルを一括で定義したいとき
+#### 共通の class 名のスタイルを一括で定義したいとき
 
-たとえばどのclass名も`col-`で始まる時
+たとえばどの class 名も`col-`で始まる時
 
-そのすべてのclass名で共通のスタイルを定義したかったら
+そのすべての class 名で共通のスタイルを定義したかったら
 
 こんな感じにする
 
@@ -1379,17 +1377,15 @@ float から切り離すことができる
 }
 ```
 
-#### inline-block要素を中央に配置する
+#### inline-block 要素を中央に配置する
 
-> このheading-secondaryを覚えておいてください。これはインラインブロックとして定義されているため、親をtext-align-centerに設定すると、その中のインラインブロック要素はテキストとして扱われるため、親の中央に配置されます
+> この heading-secondary を覚えておいてください。これはインラインブロックとして定義されているため、親を text-align-center に設定すると、その中のインラインブロック要素はテキストとして扱われるため、親の中央に配置されます
 
 ```html
 <section class="section-about">
-    <div class="u-center-text">
-        <h2 class="heading-secondary">
-            Exciting tours for adventure
-        </h2>
-    </div>
+  <div class="u-center-text">
+    <h2 class="heading-secondary">Exciting tours for adventure</h2>
+  </div>
 </section>
 ```
 
@@ -1408,7 +1404,6 @@ float から切り離すことができる
 `inline-block`はブロック要素を生成しているので
 
 これの配置を操作できるようになる
-
 
 - インライン要素とは
 
@@ -1433,6 +1428,7 @@ the inline element's influence.</div>
 改行などが起こらない
 
 ```HTML
+
 ```
 
 一方`p`要素で囲うとこれは改行をもたらし
@@ -1443,10 +1439,9 @@ the inline element's influence.</div>
 
 `span`がインライン要素で`p`がブロック要素だからである
 
+#### utilities クラスの利用の仕方
 
-#### utilitiesクラスの利用の仕方
-
-`.u-center-text`が定義されているdivに対してmargin-bottomを追加したい...
+`.u-center-text`が定義されている div に対して margin-bottom を追加したい...
 
 そんなとき。
 
@@ -1457,9 +1452,7 @@ the inline element's influence.</div>
 ```html
 <!-- u-margin-bottom-8というCSSを追加した -->
 <div class="u-center-text u-margin-bottom-8">
-    <h2 class="heading-secondary">
-        Exciting tours for adventure
-    </h2>
+  <h2 class="heading-secondary">Exciting tours for adventure</h2>
 </div>
 ```
 
@@ -1475,39 +1468,36 @@ the inline element's influence.</div>
 
 `.u-center-text`の再利用性を損なわずに済む
 
-
 再利用性が高く、追加しやすい定義群
 
-本来のスタイルが定義されている要素にutilitiesのクラス名を追加することで
+本来のスタイルが定義されている要素に utilities のクラス名を追加することで
 
 すぐに欲しいスタイルを追加できる
 
 インスタントな存在である
 
-## CSS Tips: Iconを使う時はSVGを使うこと
+## CSS Tips: Icon を使う時は SVG を使うこと
 
 ページの拡大縮小に影響を受けるので
-PNGだと解像度が変わってしまったりする
+PNG だと解像度が変わってしまったりする
 
-SVGなら問題なし
+SVG なら問題なし
 
+## CSS Tips: skew で背景を斜めにして、セクション間のギャップを埋める方法
 
-
-## CSS Tips: skewで背景を斜めにして、セクション間のギャップを埋める方法
-
-(drawioで図形を作ってmarkdownに埋め込んでみた)
+(drawio で図形を作って markdown に埋め込んでみた)
 
 ![](<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="591px" viewBox="-0.5 -0.5 591 591" content="&lt;mxfile host=&quot;06dfog0h3hjo8pr7rodigffo1hf3l8u6edfg4g5qr45rm1npunhg&quot; modified=&quot;2022-04-05T12:53:31.611Z&quot; agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.66.0 Chrome/98.0.4758.109 Electron/17.2.0 Safari/537.36&quot; etag=&quot;r_h_nrrfcLwnYE-yE1TZ&quot; version=&quot;12.2.4&quot; pages=&quot;1&quot;&gt;&lt;diagram id=&quot;m8At_CxRcnWjZ6WXLhQg&quot; name=&quot;Page-1&quot;&gt;3ZVNc4IwEEB/DXchingsau2lJw89R7JCxkCYGAX767uYIJ8dndZeemGStxuSfdkBhyzTcqNonrxLBsLxJqx0yMrxPN9d4LMCFwNmi7kBseLMILcBW/4JFk4sPXEGx06illJonndhJLMMIt1hVClZdNP2UnR3zWkMA7CNqBjSD850YmjgzRv+BjxO6p1d3xac0jrZVnJMKJNFC5G1Q5ZKSm1GabkEUbmrvZh1r99EbwdTkOlHFnhmwZmKk63Nnktf6mKLhGvY5jSq5gXep0PCRKcCZy4O6TE3ive8BHxrODyCPdUZlIayheyRNiBT0OqCKTZa27l0p0XjerawLGl5vkFq7ze+vblRgANrYdwIGRjBOriCui36erAk3TVy1EoeYCmFVEgymWFmuOdC9BAVPM5wGuEGgDysBHHsshcbSDlj1Tbh2BUoecpYJXw1eZL0nnV3RLsbjGgPnmB9er8PuwXf6cq2bscjbAYBmw7uBiOBtyO+/zdtSx7s29t37TcGZwODOxod4qu1f9y0PeXBg8p/0LM4bb7L11jr50bWXw==&lt;/diagram&gt;&lt;/mxfile&gt;" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://www.draw.io/?client=1&amp;lightbox=1&amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:591px;"><defs/><g><rect x="0" y="0" width="590" height="590" fill="#ffffff" stroke="#000000" pointer-events="all"/><rect x="200" y="100" width="180" height="80" fill="none" stroke="none" pointer-events="all"/><g transform="translate(259.5,133.5)"><foreignObject style="overflow:visible;" pointer-events="all" width="60" height="13"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 61px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">entire page</div></div></foreignObject></g><rect x="0" y="210" width="590" height="210" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/><rect x="0" y="260" width="590" height="80" fill="none" stroke="none" pointer-events="all"/><g transform="translate(263.5,293.5)"><foreignObject style="overflow:visible;" pointer-events="all" width="63" height="13"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 64px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">background</div></div></foreignObject></g></g></svg>)
 
 ![](<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="593px" viewBox="-0.5 -0.5 593 561" content="&lt;mxfile host=&quot;06dfog0h3hjo8pr7rodigffo1hf3l8u6edfg4g5qr45rm1npunhg&quot; modified=&quot;2022-04-05T13:15:27.428Z&quot; agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.66.0 Chrome/98.0.4758.109 Electron/17.2.0 Safari/537.36&quot; etag=&quot;q_G-wP6uWH6IGkQ7hhL9&quot; version=&quot;12.2.4&quot; pages=&quot;1&quot;&gt;&lt;diagram id=&quot;m8At_CxRcnWjZ6WXLhQg&quot; name=&quot;Page-1&quot;&gt;3ZfLjpswFIafBqndjDC3wDLJXBeVRkqltksPeMAag5FxJkmfvsfB5mZGE3WoWnVD8G9j+3zn/IY4/rY83glcF194RpjjudnR8a8dz1t5MVyVcNKC67VCLmjWSqgXdvQn0aKr1T3NSDMaKDlnktZjMeVVRVI50rAQ/DAe9szZeNUa58QSdilmtvqNZrJo1dhb9fo9oXlhVkZR0vaU2AzWkTQFzvhhIPk3jr8VnMv2rjxuCVPsDJf2uds3eruNCVLJSx7Q3F8x2+vY9L7kyQR7KKgkuxqnqn2AfDr+ppAlgxaCW3tFvYlXIiQ5DiS9gzvCSyLFCYboXgNDV0Oim4cebWi0YoA18LWIdTrzbuY+YrjRQc8D8C0AEAcVxFTBlAaEJMcAGin4C9lyxgUoFa9g5OaZMjaRMKN5Bc0UFiCgbxQgCkW11h0lzTK1zGaOuOD7KiNq0+5C0CfUkWdjR/EM9ngB6sbIH6i7DDfFmQea4HY8/zq4Qbch6LSEHK6buj0EFDlBGjhOjGtRp3R+7WvaYjlD/NKa7iJ+r6i9cAG80ft04eCp1S1EhBkjjOcClxB6TQSF9VSBjvse+47ZAh2kRnCJJeWqphPXzk4WkjgLLOdAT+w9+VG0TAJQ4l2FoxwEdgq8ILRTECbo4ykIrRQ84fQlP9v4Pz5UJlUfX1j1i5wpyEJugSZVtlbvf0WM4aah6Rg7RC5O3xWPKzeOjPDjLCSr2AjXR42sbZ2GrYFPBlRJZn1RWJgbvhepGaX3LrHIiRnmzrMfwp1hazRBGLjydbyNOeB6hUdOYYNvpbZLo5mh3b1+aPjFMZlnNZknmMzTRmzNc85+F/RlBWF/3Nw+fAfh6/3DDn7u1o9w/fSkej13aE/4SCT48z9q09GLb4GDMpgkJA5sz0YzdRVFC3g2WNSzKAjHnnUT7896dujP6K/aM06u/Bi5QYRCP4brKKmRG/yeW300nshfLWVXaPZ/c9rh/X9F/+YX&lt;/diagram&gt;&lt;/mxfile&gt;" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;&amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;&amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;&amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://www.draw.io/?client=1&amp;lightbox=1&amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:561px;"><defs/><g><rect x="0" y="0" width="590" height="430" fill="#ffffff" stroke="#000000" pointer-events="all"/><rect x="200" y="30" width="180" height="80" fill="none" stroke="none" pointer-events="all"/><g transform="translate(259.5,62.5)"><foreignObject style="overflow:visible;" pointer-events="all" width="60" height="13"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 61px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">entire page</div></div></foreignObject></g><rect x="0" y="120" width="590" height="250" fill="#d4e1f5" stroke="#000000" stroke-dasharray="3 3" pointer-events="all"/><path d="M 172.5 541 L 221.5 -50 L 417.5 -50 L 368.5 541 Z" fill="#d5e8d4" stroke="#82b366" stroke-miterlimit="10" transform="rotate(90,295,245.5)" pointer-events="all"/><rect x="0" y="190" width="590" height="80" fill="none" stroke="none" pointer-events="all"/><g transform="translate(263.5,223.5)"><foreignObject style="overflow:visible;" pointer-events="all" width="63" height="13"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 64px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">background</div></div></foreignObject></g><path d="M 249.38 494 L 56.07 367.98" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 51.68 365.11 L 59.45 366 L 56.07 367.98 L 55.63 371.87 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="20" y="494" width="560" height="66" fill="none" stroke="none" pointer-events="all"/><g transform="translate(197.5,519.5)"><foreignObject style="overflow:visible;" pointer-events="all" width="205" height="13"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 206px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">FIX THIS GAP (blue background area)</div></div></foreignObject></g><path d="M 269.38 514 L 532.31 163.62" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 535.46 159.42 L 534.06 167.12 L 532.31 163.62 L 528.46 162.92 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/></g></svg>)
 
-(いまいましいSVGめ)
+(いまいましい SVG め)
 
 1. 緑色の背景のように斜めにする方法
 2. 緑色の背景の中のコンテンツは斜めにさせない方法
 3. 斜めにしたことで生まれるギャップを埋める方法
 
-異常の3つを学習する
+異常の 3 つを学習する
 
 ```HTML
 <!-- 斜めにする背景 -->
@@ -1525,19 +1515,17 @@ SVGなら問題なし
 
 ```scss
 .section-features {
-    padding: 2rem 0;
-    background-image: linear-gradient(
-            to right bottom,
-            rgba($color-primary-light, 0.8),
-            rgba($color-primary-dark, 0.8)
-        ),
-        url(../img/nat-4.jpg);
-        background-size: cover;
+  padding: 2rem 0;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ), url(../img/nat-4.jpg);
+  background-size: cover;
 
-        // 全体を斜めにする
-        transform: skewY(-7deg);
+  // 全体を斜めにする
+  transform: skewY(-7deg);
 }
-
 ```
 
 - `section-feature`の**直接の子要素**はすべて斜めにさせない
@@ -1545,7 +1533,7 @@ SVGなら問題なし
 `skewY(7deg)`させるだけ
 
 `feature-box`にハードコーディングしてもいいけれど
-それだと常に.section-featureの子要素のプロパティに
+それだと常に.section-feature の子要素のプロパティに
 必ず斜めにさせないスタイルを突っ込まないといけない
 
 なので親要素のプロパティで指定する
@@ -1554,32 +1542,29 @@ SVGなら問題なし
 
 ```scss
 .section-features {
-    padding: 2rem 0;
-    background-image: linear-gradient(
-            to right bottom,
-            rgba($color-primary-light, 0.8),
-            rgba($color-primary-dark, 0.8)
-        ),
-        url(../img/nat-4.jpg);
-        background-size: cover;
+  padding: 2rem 0;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ), url(../img/nat-4.jpg);
+  background-size: cover;
 
-        // 全体を斜めにする
-        transform: skewY(-7deg);
+  // 全体を斜めにする
+  transform: skewY(-7deg);
 
-        // 全ての「直接の」子要素
-        // 
-        // 反対の角度にskewさせるだけ
-        & > * {
-            transform: skewY(7deg)
-        }
+  // 全ての「直接の」子要素
+  //
+  // 反対の角度にskewさせるだけ
+  & > * {
+    transform: skewY(7deg);
+  }
 }
-
 ```
 
 - ギャップを埋める
 
-**ネガティブマージン**(負の方向へのmargin)を使う
-
+**ネガティブマージン**(負の方向への margin)を使う
 
 ```SCSS
 .section-features {
@@ -1591,7 +1576,7 @@ SVGなら問題なし
         ),
         url(../img/nat-4.jpg);
         background-size: cover;
-        // 
+        //
         // 上方向にmarginを
         margin-top: -10rem;
 
@@ -1607,14 +1592,193 @@ https://coliss.com/articles/build-websites/operation/css/css-using-negative-marg
 
 参考サイトが言うには
 
-静的な要素（floatなし要素）にネガティブマージンを使った場合、その指定した方向へ要素を引っ張るそうです
+静的な要素（float なし要素）にネガティブマージンを使った場合、その指定した方向へ要素を引っ張るそうです
+
+## CSS Tips: カードをめくる、めくるときの 3 次元的な動き
+
+- `transform: translateY(180deg)`でカードがめくるように動く
+
+```SCSS
+.card {
+    // ...
+    transition: all .5s;
+    &:hover {
+        transform: translateY(180deg);
+    }
+}
+```
+
+- `perspective`で 3 次元的な遠近感を与える
+
+MDN より
+
+> perspective は CSS のプロパティで、 z=0 の平面とユーザーとの間の距離を定めて三次元に配置された要素に遠近感を与えます。
+
+この`perspetive`を先の`.card`に適用すると、
+まるでカードをめくっているかのようにふるまわせることができる
+
+```SCSS
+.card {
+    // ...
+    // ユーザーと z=0 平面間の距離を表す <length> です
+    perspective: 150rem;
+    transition: all .5s;
+    &:hover {
+        transform: translateY(180deg);
+    }
+}
+```
+
+## CSS Tips: めくれるカードの裏表をどうやって実装するのか
+
+```html
+<div class="card">
+  <div class="card__side card__side--front">FRONT</div>
+  <div class="card__side card__side--back">BACK</div>
+</div>
+```
+
+- 第 1 段階：それぞれ常に反対方向をみせるようにする
+
+```SCSS
+.card {
+    perspective: 150rem;
+    -moz-perspective: 150rem;
 
 
-## CSS Tips: カードをめくる
+    &__side {
+        background-color: orangered;
+        color: #fff;
+        font-size: 1.6rem;
+        height: 50rem;
+        transition: all 0.8s;
 
-`transform: translateY(180deg)`でカードをめくるように動く
+        &--front {
+            background-color: orangered;
+        }
+
+        &--back {
+            background-color: green;
+            // 平時は裏を向けている
+            transform: rotateY(180deg);
+        }
+    }
 
 
+    &:hover &__side--front {
+        // frontが180度回転するとき
+        transform: rotateY(180deg);
+    }
+    &:hover &__side--back {
+        // 元々180度回転していたbackを0度にする
+        transform: rotateY(0);
+    }
+}
+```
+
+- 第二段階：front と back の位置を合わせる
+
+今のところ上下に front と back の card が並んでいるので
+これを同じ位置に配置して重ね合わせる
+
+`position`を使う
+
+伴って、
+
+幅が値であるテキストに一致するようになってしまっているので
+
+`width: 100%`を与えて card(というか grid の.col-1-of-3)の本来の幅に合わせる
+
+`backface-visibility: hidden`で裏は非表示にさせることができる
+
+```SCSS
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+
+  &__side {
+    color: #fff;
+    font-size: 1.6rem;
+
+    height: 50rem;
+    transition: all 0.8s;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+
+    &--front {
+      background-color: orangered;
+    }
+
+    &--back {
+      background-color: green;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(180deg);
+  }
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}
+```
+
+- 第三段階：高さの修正
+
+`position: absolute`は通常のフローから外れ要素の為のレイアウトが作成されない
+
+**これを`display: float`のなかでやると次の要素と重なってしまう**
+
+なので.card とその次の要素が重なってしまうのである
+
+これを解決するために.card へ明示的に高さを与える
+
+```SCSS
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+
+    // 明示的な高さを設定する
+  height: 50rem;
+
+  &__side {
+    color: #fff;
+    font-size: 1.6rem;
+
+    height: 50rem;
+    transition: all 0.8s;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+
+    &--front {
+      background-color: #fff;
+    }
+
+    &--back {
+      background-color: green;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(180deg);
+  }
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}
+```
 
 ## EMMET-Tips
 
@@ -1631,7 +1795,6 @@ https://coliss.com/articles/build-websites/operation/css/css-using-negative-marg
 </div>
 ```
 
-
 ## お役立ち
 
 - ダミーテキストを生成してくれるサービス
@@ -1645,7 +1808,6 @@ https://coliss.com/articles/build-websites/operation/css/css-using-negative-marg
 講師のページ
 
 https://css-tricks.com/snippets/html/glyphs/
-
 
 - Linea Icon free icon
 
