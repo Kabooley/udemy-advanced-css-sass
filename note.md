@@ -1513,15 +1513,106 @@ SVGなら問題なし
 <!-- 斜めにする背景 -->
 <section class="section-features">
     <!-- 背景上のコンテンツ -->
-    <div class="content-of-section">content 1</div>
-    <div class="content-of-section">content 2</div>
-    <div class="content-of-section">content 3</div>
+    <div class="feature-box">content 1</div>
+    <div class="feature-box">content 2</div>
+    <div class="feature-box">content 3</div>
 </section>
 ```
 
-```SASS
+- まず全体を斜めにする
+
+`transform: skew`を使う
+
+```scss
+.section-features {
+    padding: 2rem 0;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)
+        ),
+        url(../img/nat-4.jpg);
+        background-size: cover;
+
+        // 全体を斜めにする
+        transform: skewY(-7deg);
+}
 
 ```
+
+- `section-feature`の**直接の子要素**はすべて斜めにさせない
+
+`skewY(7deg)`させるだけ
+
+`feature-box`にハードコーディングしてもいいけれど
+それだと常に.section-featureの子要素のプロパティに
+必ず斜めにさせないスタイルを突っ込まないといけない
+
+なので親要素のプロパティで指定する
+
+直接の子要素だけをしていさせるのは全体をゆがませないため
+
+```scss
+.section-features {
+    padding: 2rem 0;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)
+        ),
+        url(../img/nat-4.jpg);
+        background-size: cover;
+
+        // 全体を斜めにする
+        transform: skewY(-7deg);
+
+        // 全ての「直接の」子要素
+        // 
+        // 反対の角度にskewさせるだけ
+        & > * {
+            transform: skewY(7deg)
+        }
+}
+
+```
+
+- ギャップを埋める
+
+**ネガティブマージン**(負の方向へのmargin)を使う
+
+
+```SCSS
+.section-features {
+    padding: 2rem 0;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)
+        ),
+        url(../img/nat-4.jpg);
+        background-size: cover;
+        // 
+        // 上方向にmarginを
+        margin-top: -10rem;
+
+        transform: skewY(-7deg);
+        & > * {
+            transform: skewY(7deg)
+        }
+}
+
+```
+
+https://coliss.com/articles/build-websites/operation/css/css-using-negative-margins.html
+
+参考サイトが言うには
+
+静的な要素（floatなし要素）にネガティブマージンを使った場合、その指定した方向へ要素を引っ張るそうです
+
+
+## CSS Tips: カードをめくる
+
+`transform: translateY(180deg)`でカードをめくるように動く
 
 
 
