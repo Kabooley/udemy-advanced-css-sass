@@ -5,6 +5,7 @@
 - [basic-tips](#basic-tips)
 - [SASS-basic](#SASS-basic)
 - [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
+- [ResponsiveDesign](#ResponsiveDesign)
 - [EMMET-Tips](#EMMET-Tips)
 - [お役立ち](#お役立ち)
 
@@ -1779,6 +1780,243 @@ MDN より
   }
 }
 ```
+## ResponsiveDesign
+
+講義ではデスクトップ・ファーストで構築していく
+
+つまり、
+
+デスクトップのブラウザで表示されるスタイルをまず作って
+
+そのスタイルにmedia-queryとか使って
+
+モバイル専用スタイルに変更していく方針である
+
+### `max-width`とmedia query
+
+要素の最大幅を設定し、widthプロパティの使用値が`max-width`で指定した値を上回ることを防ぐ
+
+max-width は width を上書きしますが、 min-width は max-width を上書きします。
+
+`max-width`が2つ設定されてあって、両方適用される状況では
+
+どちらが適用されるのか？
+
+その場合は両方適用される
+
+つまり競合しているので
+
+カスケーディングのルールに照らせば
+
+最後に宣言されているルールが適用される
+
+なのでmedia-queryを定義するときは必ず一番最後に定義する
+
+また、
+
+ｍedia-queryには詳細度や`!important`を付与しない
+
+
+### ブレークポイントの決め方
+
+どの幅をブレークポイントとして決めるか
+
+悪い方法：
+
+Apple製品の一般的なブレークポイントを基本とすること
+
+Apple以外をないがしろにしているし、
+Appleが急に解像度とか変更するかもしれない
+
+よい方法：
+
+一般的に流通しているデバイスの幅を分類して分ける方法
+
+完璧な方法：
+
+デバイスをすべて無視して、コンテンツとデザインのみを確認することです。
+
+したがって、理想的には、このように機能します。
+
+モバイルまたはデスクトップのいずれかの1つのサイズから始めて、最初に画面幅を大きくするか、デスクトップ用に小さくします。
+
+次に、デザインが壊れるとすぐに、つまりデザインが機能しなくなり、問題がないように見えたら、新しいブレークポイントを挿入します。
+
+以上です。
+
+
+### media queryと@mixin
+
+全ての要素に対してmediaクエリを付けるのは大変な作業になる
+
+だからsassの@mixinを使おう
+
+- 通常のCSSの書き方
+
+```css
+/* ... */
+
+body {
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    html {
+      font-size: 50%;
+    }
+    body {
+      font-size: 50%;
+    }
+}
+```
+
+- SCSSな書き方
+
+ただしこれだとレスポンシブにしたい要素すべてに@mediaを書いて回ることになる
+
+```SCSS 
+html {
+    // This defines what 1rem is
+    font-size: 62.5%;
+
+    @media (max-width: 600px) {
+        font-size: 50%;
+    }
+
+    @media (max-width: 900px) {
+        font-size: 50%;
+    }
+}
+```
+
+- @mixinを使った方法
+
+```SCSS
+// 定義
+@mixin respond-phone {
+  // @contentで利用側のプロパティを取得できる
+  @media (max-width: 600px) {@content}
+};
+
+// 利用
+html {
+  font-size: 62.5%;
+
+  @include respond-phone {
+    font-size: 50%;
+  }
+};
+```
+
+
+### 既存のCSSへ@mediaを適用していく順番
+
+7-1 patternで適用していくならば
+
+base
+typography
+general layout + grid
+page layout
+component
+
+## SCSS Tips: @mixinでpxではなく相対値を使う方法
+
+つまり基準の値をどうやって取得するのかって話
+
+
+
+## SCSS Tips: @mixinを使った条件分岐
+
+mediaクエリで予め@mixinをたくさん作っておこうと思ったけど
+条件分岐を使えばコードがわかりやすい
+
+```SCSS
+// ブレークポイントごとに下記のようなものを作ろうと思っていた
+@mixin respond-phone {
+  @media (max-width: 600px) {@content}
+};
+
+// しかし引数をとる && ifを使って条件分岐させる
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 600px) {@content}
+  };
+  @if $breakpoint == tab-port {
+    @media (max-width: 900px) {@content}
+  };
+  @if $breakpoint == tab-land {
+    @media (max-width: 1200px) {@content}
+  };
+  @if $breakpoint == big-desktop {
+    @media (min-width: 1800px) {@content}
+  };
+};
+
+// 利用側
+html {
+  font-size: 62.5%;
+
+  @include respond(phone) {
+    font-size: 50%;
+  }
+  @include respond(tab-port) {
+    font-size: 60%;
+  }
+  @include respond(tab-land) {
+    font-size: 70%;
+  }
+  @include respond(big-desktop) {
+    font-size: 80%;
+  }
+};
+```
+
+## CSS Tips: @mediaの定義順序の重要性
+
+前提： **@madiaには詳細度は指定できない**
+
+なのでカスケーディング優先順位としては
+「同じ詳細度の定義が競合した場合、一番最後に定義されたものを適用する」
+のである
+
+さて@mediaで定義するのは各ブレークポイントで適切なプロパティを適用させることである
+
+なのでこのブレークポイントの幅になったらこいつを適用させたい
+
+という命令を実現させるためには
+
+@media内の定義順序で実現させるほかない
+
+講義ではデスクトップ・ファーストなので
+
+1800px > 1200px > 900px > 600px
+
+の優先度となる
+
+つまり定義順序はこんな感じ
+
+```scss
+@mixin respond($breakpoint) {
+  // 最低優先度：600px以下
+    @if $breakpoint == phone {
+      @media (max-width: 37.5em) {@content}
+    };
+    // 3番手優先：900px以上
+    @if $breakpoint == tab-port {
+      @media (max-width: 56.25em) {@content}
+    };
+    // 2番手優先：1200px以上
+    @if $breakpoint == tab-land {
+      @media (max-width: 75em) {@content}
+    };
+    // 最優先：1800px以上
+    @if $breakpoint == big-desktop {
+      @media (min-width: 112.5em) {@content}
+    };
+  };
+
+```
+
 
 ## EMMET-Tips
 
