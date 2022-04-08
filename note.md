@@ -2,12 +2,12 @@
 
 ## 目次
 
-- [basic-tips](#basic-tips)
-- [SASS-basic](#SASS-basic)
-- [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
-- [ResponsiveDesign](#ResponsiveDesign)
-- [EMMET-Tips](#EMMET-Tips)
-- [お役立ち](#お役立ち)
+-   [basic-tips](#basic-tips)
+-   [SASS-basic](#SASS-basic)
+-   [CSS BEHIND THE SCENES](#CSS BEHIND THE SCENES)
+-   [ResponsiveDesign](#ResponsiveDesign)
+-   [EMMET-Tips](#EMMET-Tips)
+-   [お役立ち](#お役立ち)
 
 ## basic-tips
 
@@ -48,8 +48,8 @@ CSS ボックスモデルの既定によると、
 
 ```html
 <link
-  href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
-  rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+    rel="stylesheet"
 />
 ```
 
@@ -220,8 +220,8 @@ translateX -100px -> 0
 
 デフォを制御：
 
-- リンクが踏まれる前は青色であること
-- リンクが踏まれたら紫色になること
+-   リンクが踏まれる前は青色であること
+-   リンクが踏まれたら紫色になること
 
 ```CSS
 
@@ -384,21 +384,21 @@ translateX -100px -> 0
 
 ## web サイトを構築する際の 3 つの重要な柱
 
-- レスポンシブデザイン
-- メンテナブル/スケーラブル
-- web パフォーマンス
+-   レスポンシブデザイン
+-   メンテナブル/スケーラブル
+-   web パフォーマンス
 
 #### レスポンシブデザイン
 
-- fluid layout
-- Media queries
-- responsive images
-- correct utils
-- Desktop-first vs modile-first
+-   fluid layout
+-   Media queries
+-   responsive images
+-   correct utils
+-   Desktop-first vs modile-first
 
 #### メンテナブル/スケーラブル
 
-- クリーンで再利用性が高いとか命名方法とか普通のこと
+-   クリーンで再利用性が高いとか命名方法とか普通のこと
 
 #### web パフォーマンス
 
@@ -432,14 +432,14 @@ https://developer.mozilla.org/ja/docs/Web/CSS/Cascade
 
 stylesheet にはいくつか種類があり、
 
-- ユーザエージェントスタイルシート
-  ブラウザの既存のスタイルを提供するスタイルシート
+-   ユーザエージェントスタイルシート
+    ブラウザの既存のスタイルを提供するスタイルシート
 
-- 作成者スタイルシート
-  特定の web ページのスタイルを定義するスタイルシートである
+-   作成者スタイルシート
+    特定の web ページのスタイルを定義するスタイルシートである
 
-- ユーザスタイルシート
-  web サイトを利用するユーザが使い勝手などを調整できるスタイルシート
+-   ユーザスタイルシート
+    web サイトを利用するユーザが使い勝手などを調整できるスタイルシート
 
 cascade 順 (定義の適用優先度):
 
@@ -489,18 +489,18 @@ ID > class > element & pseudo
 
 #### cascade で覚えておくこと
 
-- `!important`はもっとも優先度が高く扱われる
-- しかし`!important`はどうしても競合が解決しないときに最後の手段として用いるべき
-  バグの温床になりがち
+-   `!important`はもっとも優先度が高く扱われる
+-   しかし`!important`はどうしても競合が解決しないときに最後の手段として用いるべき
+    バグの温床になりがち
 
-- HTML 内で作成されるインラインスタイルは外部スタイルよりも常に優先される
-  インラインスタイルは悪い習慣です
+-   HTML 内で作成されるインラインスタイルは外部スタイルよりも常に優先される
+    インラインスタイルは悪い習慣です
 
-- 詳細度をあげるには id か class で CSS 宣言しましょう
-- 全称セレクタは詳細度を持たない（優先度がない）
-- セレクタの順番よりも詳細度を信頼しましょう
-- サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
-  この辺は順番の話で、SOURCEORDER のところで書いた通り
+-   詳細度をあげるには id か class で CSS 宣言しましょう
+-   全称セレクタは詳細度を持たない（優先度がない）
+-   セレクタの順番よりも詳細度を信頼しましょう
+-   サードパーティのスタイルシートを利用するときは、自身のスタイルシートを一番最後に追加しましょう
+    この辺は順番の話で、SOURCEORDER のところで書いた通り
 
 #### 最終的な CSS の値の決定フロー
 
@@ -510,7 +510,7 @@ ID > class > element & pseudo
 
 ```html
 <div class="section">
-  <p class="amazing">AMAZING</p>
+    <p class="amazing">AMAZING</p>
 </div>
 ```
 
@@ -535,27 +535,27 @@ p {
 
 1. 宣言値
 
-   作成者の指定した値
+    作成者の指定した値
 
 2. cascade 値
 
-   cascade 後にその宣言にたいしてもっとも優先度が高い値
+    cascade 後にその宣言にたいしてもっとも優先度が高い値
 
 3. 特定値
 
-   cascade しても優先度が高い値がなかった場合に採用される値
+    cascade しても優先度が高い値がなかった場合に採用される値
 
 4. 計算値
 
-   相対値を絶対値に変換した値
+    相対値を絶対値に変換した値
 
 5. 使用済の値
 
-   レイアウトに基づいた計算値
+    レイアウトに基づいた計算値
 
 6. 実際の値
 
-   1~5 を経て決定された値
+    1~5 を経て決定された値
 
 これを適用すると
 
@@ -627,26 +627,26 @@ header {
 
 知っておくこと：
 
-- 宣言されていない&&継承がない場合に採用される初期値がどのプロパティにもある
-- ブラウザは root にデフォルトの font-size がある（だいたい 16px）
-- %と相対値は常に px へ変換される
-- 親要素に font-size が指定されていれば、%は親要素の font-size に対してになる
-- 親要素に長さが指定されていれば、%は親要素の width に対してになる
-- em は親要素の font-size に対しての相対値
-- em は現在の font-size に対しての相対値
-- rem は常に root 要素の font-size に対しての相対値
+-   宣言されていない&&継承がない場合に採用される初期値がどのプロパティにもある
+-   ブラウザは root にデフォルトの font-size がある（だいたい 16px）
+-   %と相対値は常に px へ変換される
+-   親要素に font-size が指定されていれば、%は親要素の font-size に対してになる
+-   親要素に長さが指定されていれば、%は親要素の width に対してになる
+-   em は親要素の font-size に対しての相対値
+-   em は現在の font-size に対しての相対値
+-   rem は常に root 要素の font-size に対しての相対値
 
 #### 継承
 
 知っておくこと
 
-- 継承は特定のプロパティに対して親要素から子要素へ行われる
-- テキストに関するプロパティは継承が行われる
-  font-family, font-size とか
-- プロパティの計算値は、宣言された値ではなく、継承されるものです
-- プロパティの継承は、そのプロパティが宣言されていなかったら継承される
-- `inherit`キーワードは特定のプロパティに継承を強制する
-- `inherit`キーワードは特定のプロパティの初期値をリセットする
+-   継承は特定のプロパティに対して親要素から子要素へ行われる
+-   テキストに関するプロパティは継承が行われる
+    font-family, font-size とか
+-   プロパティの計算値は、宣言された値ではなく、継承されるものです
+-   プロパティの継承は、そのプロパティが宣言されていなかったら継承される
+-   `inherit`キーワードは特定のプロパティに継承を強制する
+-   `inherit`キーワードは特定のプロパティの初期値をリセットする
 
 ## Good Practice: 常にブラウザのデフォルト値を継承などするために
 
@@ -766,13 +766,13 @@ width = specified width;
 
 3. box types
 
-- `display: block`
+-   `display: block`
 
 要素の見た目はブロックのようにフォーマットされる
 100% of parents width
 垂直方向に並べられる
 
-- `display: inline`
+-   `display: inline`
 
 コンテンツは水平方向に並べられる
 コンテンツ領域だけを占領する
@@ -780,7 +780,7 @@ width = specified width;
 高さと幅を指定できない
 水平方向の padding, margin しか指定できない
 
-- `display: inline-block`
+-   `display: inline-block`
 
 block と inline のミックスイン
 
@@ -851,11 +851,11 @@ https://en.bem.info/
 > その背後にある考え方は、ユーザーインターフェイスを独立したブロックに分割することです。
 > これにより、複雑な UI を使用した場合でも、インターフェイスの開発が簡単かつ迅速になり、コピーして貼り付けることなく既存のコードを再利用できます。
 
-- BLOCK
+-   BLOCK
 
 > 再利用できる機能的に独立したページコンポーネント。 HTML では、ブロックはクラス属性で表されます。 特徴： ブロック名は、その状態（「どのように見えるか」-赤または大きい）ではなく、その目的（「それは何ですか？」-メニューまたはボタン）を説明します。
 
-- ELEMENT
+-   ELEMENT
 
 > ブロックとは別に使用できない複合パーツ。 特徴： 要素名は、その状態（「どのタイプ、またはどのように見えるか」-赤、大きいなど）ではなく、その目的（「これは何ですか？」-アイテム、テキストなど）を説明します。 要素のフルネームの構造は block-name**element-name です。要素名は、二重下線（**）でブロック名と区切られます。
 
@@ -870,7 +870,7 @@ https://en.bem.info/
 </form>
 ```
 
-- MODIFIER
+-   MODIFIER
 
 > ブロックまたは要素の外観、状態、または動作を定義するエンティティ。
 
@@ -1178,30 +1178,30 @@ $ node-sass sass/main.scss css/style.css -w
 
 基本レスポンシブデザイン原則:
 
-- Fluid layouts
-- Responsive units
-- Flexible images
-- Media queries
+-   Fluid layouts
+-   Responsive units
+-   Flexible images
+-   Media queries
 
 Summary:
 
 1. Fluid layouts
 
-- 現在の viewport(幅や高さ)に適応することを可能とさせること
-  そのために...
-- %をつかって px は使わない
-- `max-width`を`width`の代わりに使う
+-   現在の viewport(幅や高さ)に適応することを可能とさせること
+    そのために...
+-   %をつかって px は使わない
+-   `max-width`を`width`の代わりに使う
 
 2. Responsive units
 
-- `rem`を`px`の代わりに使うこと
-- レイアウトを容易にそして自動的に拡縮可能にすること
+-   `rem`を`px`の代わりに使うこと
+-   レイアウトを容易にそして自動的に拡縮可能にすること
 
 3. Flexible images
 
-- デフォルトとして、viewport の変化に対して image は自動的に拡縮させない
-- image の寸法に対して常に%を使うこと
-  `max-width`も使うこと
+-   デフォルトとして、viewport の変化に対して image は自動的に拡縮させない
+-   image の寸法に対して常に%を使うこと
+    `max-width`も使うこと
 
 4. Media queries
 
@@ -1227,7 +1227,7 @@ float レイアウトを理解しないと古い技術を使う現場で困る
 
 ## Learn Grid Layout using float
 
-- `max-width`:
+-   `max-width`:
 
 max-width は、十分な空きスペースがある場合は指定した幅になりますが、
 
@@ -1235,7 +1235,7 @@ max-width は、十分な空きスペースがある場合は指定した幅に�
 
 つまりこの場合はビューポートが 114rem より小さい場合、ビューポートは、使用可能なスペースの 100％を埋めるだけです。
 
-- 一番最後の要素以外すべてに適用させたいとき
+-   一番最後の要素以外すべてに適用させたいとき
 
 ```SCSS
 .row {
@@ -1254,7 +1254,7 @@ max-width は、十分な空きスペースがある場合は指定した幅に�
 }
 ```
 
-- SASS のテンプレートリテラル
+-   SASS のテンプレートリテラル
 
 ```SCSS
   .col-1-of-2 {
@@ -1384,9 +1384,9 @@ float から切り離すことができる
 
 ```html
 <section class="section-about">
-  <div class="u-center-text">
-    <h2 class="heading-secondary">Exciting tours for adventure</h2>
-  </div>
+    <div class="u-center-text">
+        <h2 class="heading-secondary">Exciting tours for adventure</h2>
+    </div>
 </section>
 ```
 
@@ -1406,7 +1406,7 @@ float から切り離すことができる
 
 これの配置を操作できるようになる
 
-- インライン要素とは
+-   インライン要素とは
 
 https://developer.mozilla.org/ja/docs/Web/HTML/Inline_elements
 
@@ -1453,7 +1453,7 @@ the inline element's influence.</div>
 ```html
 <!-- u-margin-bottom-8というCSSを追加した -->
 <div class="u-center-text u-margin-bottom-8">
-  <h2 class="heading-secondary">Exciting tours for adventure</h2>
+    <h2 class="heading-secondary">Exciting tours for adventure</h2>
 </div>
 ```
 
@@ -1510,26 +1510,26 @@ SVG なら問題なし
 </section>
 ```
 
-- まず全体を斜めにする
+-   まず全体を斜めにする
 
 `transform: skew`を使う
 
 ```scss
 .section-features {
-  padding: 2rem 0;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba($color-primary-light, 0.8),
-      rgba($color-primary-dark, 0.8)
-    ), url(../img/nat-4.jpg);
-  background-size: cover;
+    padding: 2rem 0;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)
+        ), url(../img/nat-4.jpg);
+    background-size: cover;
 
-  // 全体を斜めにする
-  transform: skewY(-7deg);
+    // 全体を斜めにする
+    transform: skewY(-7deg);
 }
 ```
 
-- `section-feature`の**直接の子要素**はすべて斜めにさせない
+-   `section-feature`の**直接の子要素**はすべて斜めにさせない
 
 `skewY(7deg)`させるだけ
 
@@ -1543,27 +1543,27 @@ SVG なら問題なし
 
 ```scss
 .section-features {
-  padding: 2rem 0;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba($color-primary-light, 0.8),
-      rgba($color-primary-dark, 0.8)
-    ), url(../img/nat-4.jpg);
-  background-size: cover;
+    padding: 2rem 0;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)
+        ), url(../img/nat-4.jpg);
+    background-size: cover;
 
-  // 全体を斜めにする
-  transform: skewY(-7deg);
+    // 全体を斜めにする
+    transform: skewY(-7deg);
 
-  // 全ての「直接の」子要素
-  //
-  // 反対の角度にskewさせるだけ
-  & > * {
-    transform: skewY(7deg);
-  }
+    // 全ての「直接の」子要素
+    //
+    // 反対の角度にskewさせるだけ
+    & > * {
+        transform: skewY(7deg);
+    }
 }
 ```
 
-- ギャップを埋める
+-   ギャップを埋める
 
 **ネガティブマージン**(負の方向への margin)を使う
 
@@ -1597,7 +1597,7 @@ https://coliss.com/articles/build-websites/operation/css/css-using-negative-marg
 
 ## CSS Tips: カードをめくる、めくるときの 3 次元的な動き
 
-- `transform: translateY(180deg)`でカードがめくるように動く
+-   `transform: translateY(180deg)`でカードがめくるように動く
 
 ```SCSS
 .card {
@@ -1609,7 +1609,7 @@ https://coliss.com/articles/build-websites/operation/css/css-using-negative-marg
 }
 ```
 
-- `perspective`で 3 次元的な遠近感を与える
+-   `perspective`で 3 次元的な遠近感を与える
 
 MDN より
 
@@ -1634,12 +1634,12 @@ MDN より
 
 ```html
 <div class="card">
-  <div class="card__side card__side--front">FRONT</div>
-  <div class="card__side card__side--back">BACK</div>
+    <div class="card__side card__side--front">FRONT</div>
+    <div class="card__side card__side--back">BACK</div>
 </div>
 ```
 
-- 第 1 段階：それぞれ常に反対方向をみせるようにする
+-   第 1 段階：それぞれ常に反対方向をみせるようにする
 
 ```SCSS
 .card {
@@ -1677,7 +1677,7 @@ MDN より
 }
 ```
 
-- 第二段階：front と back の位置を合わせる
+-   第二段階：front と back の位置を合わせる
 
 今のところ上下に front と back の card が並んでいるので
 これを同じ位置に配置して重ね合わせる
@@ -1730,7 +1730,7 @@ MDN より
 }
 ```
 
-- 第三段階：高さの修正
+-   第三段階：高さの修正
 
 `position: absolute`は通常のフローから外れ要素の為のレイアウトが作成されない
 
@@ -1780,6 +1780,7 @@ MDN より
   }
 }
 ```
+
 ## ResponsiveDesign
 
 講義ではデスクトップ・ファーストで構築していく
@@ -1788,17 +1789,17 @@ MDN より
 
 デスクトップのブラウザで表示されるスタイルをまず作って
 
-そのスタイルにmedia-queryとか使って
+そのスタイルに media-query とか使って
 
 モバイル専用スタイルに変更していく方針である
 
-### `max-width`とmedia query
+### `max-width`と media query
 
-要素の最大幅を設定し、widthプロパティの使用値が`max-width`で指定した値を上回ることを防ぐ
+要素の最大幅を設定し、width プロパティの使用値が`max-width`で指定した値を上回ることを防ぐ
 
 max-width は width を上書きしますが、 min-width は max-width を上書きします。
 
-`max-width`が2つ設定されてあって、両方適用される状況では
+`max-width`が 2 つ設定されてあって、両方適用される状況では
 
 どちらが適用されるのか？
 
@@ -1810,12 +1811,11 @@ max-width は width を上書きしますが、 min-width は max-width を上�
 
 最後に宣言されているルールが適用される
 
-なのでmedia-queryを定義するときは必ず一番最後に定義する
+なので media-query を定義するときは必ず一番最後に定義する
 
 また、
 
-ｍedia-queryには詳細度や`!important`を付与しない
-
+ｍ edia-query には詳細度や`!important`を付与しない
 
 ### ブレークポイントの決め方
 
@@ -1823,10 +1823,10 @@ max-width は width を上書きしますが、 min-width は max-width を上�
 
 悪い方法：
 
-Apple製品の一般的なブレークポイントを基本とすること
+Apple 製品の一般的なブレークポイントを基本とすること
 
-Apple以外をないがしろにしているし、
-Appleが急に解像度とか変更するかもしれない
+Apple 以外をないがしろにしているし、
+Apple が急に解像度とか変更するかもしれない
 
 よい方法：
 
@@ -1838,20 +1838,19 @@ Appleが急に解像度とか変更するかもしれない
 
 したがって、理想的には、このように機能します。
 
-モバイルまたはデスクトップのいずれかの1つのサイズから始めて、最初に画面幅を大きくするか、デスクトップ用に小さくします。
+モバイルまたはデスクトップのいずれかの 1 つのサイズから始めて、最初に画面幅を大きくするか、デスクトップ用に小さくします。
 
 次に、デザインが壊れるとすぐに、つまりデザインが機能しなくなり、問題がないように見えたら、新しいブレークポイントを挿入します。
 
 以上です。
 
+### media query と@mixin
 
-### media queryと@mixin
+全ての要素に対して media クエリを付けるのは大変な作業になる
 
-全ての要素に対してmediaクエリを付けるのは大変な作業になる
+だから sass の@mixin を使おう
 
-だからsassの@mixinを使おう
-
-- 通常のCSSの書き方
+-   通常の CSS の書き方
 
 ```css
 /* ... */
@@ -1862,19 +1861,19 @@ body {
 
 @media (max-width: 600px) {
     html {
-      font-size: 50%;
+        font-size: 50%;
     }
     body {
-      font-size: 50%;
+        font-size: 50%;
     }
 }
 ```
 
-- SCSSな書き方
+-   SCSS な書き方
 
-ただしこれだとレスポンシブにしたい要素すべてに@mediaを書いて回ることになる
+ただしこれだとレスポンシブにしたい要素すべてに@media を書いて回ることになる
 
-```SCSS 
+```SCSS
 html {
     // This defines what 1rem is
     font-size: 62.5%;
@@ -1889,7 +1888,7 @@ html {
 }
 ```
 
-- @mixinを使った方法
+-   @mixin を使った方法
 
 ```SCSS
 // 定義
@@ -1908,10 +1907,9 @@ html {
 };
 ```
 
+### 既存の CSS へ@media を適用していく順番
 
-### 既存のCSSへ@mediaを適用していく順番
-
-7-1 patternで適用していくならば
+7-1 pattern で適用していくならば
 
 base
 typography
@@ -1919,15 +1917,149 @@ general layout + grid
 page layout
 component
 
-## SCSS Tips: @mixinでpxではなく相対値を使う方法
+## DevTools Tips: toggle device toolbar を使おう
 
-つまり基準の値をどうやって取得するのかって話
+chrome の標準 devtools 機能の`toggle device`を使うと
+レスポンシブデザインの開発がはかどる話
+
+このモードにすると画面トップにツールバーが表示されて
+
+サイズごとの調整や一般的なデバイスの画面サイズを表示してくれる
+
+便利
+
+各調整が必要な項目を、画面サイズ変更しながら適切なサイズを探しながら調整する
+
+## SCSS Tips: row 並びのコンテンツを小画面においては縦並びにレスポンシブ表示させる方法
+
+基本的に最大サイズ画面で以下は横並びになる
+
+```html
+<div class="row">
+    <div class="col-1-of-4">
+        <!-- content -->
+    </div>
+    <div class="col-1-of-4">
+        <!-- content -->
+    </div>
+    <div class="col-1-of-4">
+        <!-- content -->
+    </div>
+    <div class="col-1-of-4">
+        <!-- content -->
+    </div>
+</div>
+```
+
+横並びを縦にするためには
+
+-   .row の子要素の width を 100%にする
+-   .row の最後の要素の margin-right を 0 にする
+
+変更前
+
+```SCSS
+.row {
+    max-width: $grid-width;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+    }
+
+    @include clearfix;
+
+    [class^="col-"] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+        }
+    }
+
+    //....
+}
+```
+
+変更後
+
+```SCSS
+.row {
+    max-width: $grid-width;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+
+        // marginの幅を狭くした
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+
+    @include clearfix;
+
+    [class^='col-'] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            // margin-rightを0にする
+            @include respond(tab-port) {
+                margin-right: 0;
+            }
+        }
+        // widthを100%にする
+        @include respond(tab-port) {
+            width: 100% !important;
+        }
+    }
+
+// ...
+}
+
+```
+
+このままだとすべての.row子要素が幅いっぱいに表示されて見栄えが悪い
+
+なので
+
+respond(tab-port)の時は左右に余裕を持たせたい
+
+`max-width`を`.row`へ追加する
+
+```SCSS
+.row {
+    max-width: $grid-width;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+    // 追加した
+    @include respond(tab-port) {
+        max-width: 50%;
+    }
+
+    @include clearfix;
+    //...
+}
+```
+
+これだけで修正完了しているのは
+
+ひとえにすべてのgridプロパティが親要素をもとにしたサイズ定義をしているから
 
 
 
-## SCSS Tips: @mixinを使った条件分岐
+## SCSS Tips: @mixin を使った条件分岐
 
-mediaクエリで予め@mixinをたくさん作っておこうと思ったけど
+media クエリで予め@mixin をたくさん作っておこうと思ったけど
 条件分岐を使えばコードがわかりやすい
 
 ```SCSS
@@ -1971,21 +2103,21 @@ html {
 };
 ```
 
-## CSS Tips: @mediaの定義順序の重要性
+## CSS Tips: @media の定義順序の重要性
 
-前提： **@madiaには詳細度は指定できない**
+前提： **@madia には詳細度は指定できない**
 
 なのでカスケーディング優先順位としては
 「同じ詳細度の定義が競合した場合、一番最後に定義されたものを適用する」
 のである
 
-さて@mediaで定義するのは各ブレークポイントで適切なプロパティを適用させることである
+さて@media で定義するのは各ブレークポイントで適切なプロパティを適用させることである
 
 なのでこのブレークポイントの幅になったらこいつを適用させたい
 
 という命令を実現させるためには
 
-@media内の定義順序で実現させるほかない
+@media 内の定義順序で実現させるほかない
 
 講義ではデスクトップ・ファーストなので
 
@@ -1997,26 +2129,32 @@ html {
 
 ```scss
 @mixin respond($breakpoint) {
-  // 最低優先度：600px以下
+    // 最低優先度：600px以下
     @if $breakpoint == phone {
-      @media (max-width: 37.5em) {@content}
-    };
+        @media (max-width: 37.5em) {
+            @content;
+        }
+    }
     // 3番手優先：900px以上
     @if $breakpoint == tab-port {
-      @media (max-width: 56.25em) {@content}
-    };
+        @media (max-width: 56.25em) {
+            @content;
+        }
+    }
     // 2番手優先：1200px以上
     @if $breakpoint == tab-land {
-      @media (max-width: 75em) {@content}
-    };
+        @media (max-width: 75em) {
+            @content;
+        }
+    }
     // 最優先：1800px以上
     @if $breakpoint == big-desktop {
-      @media (min-width: 112.5em) {@content}
-    };
-  };
-
+        @media (min-width: 112.5em) {
+            @content;
+        }
+    }
+} ;
 ```
-
 
 ## EMMET-Tips
 
@@ -2035,11 +2173,11 @@ html {
 
 ## お役立ち
 
-- ダミーテキストを生成してくれるサービス
+-   ダミーテキストを生成してくれるサービス
 
 [Lorem Ipsum](#https://www.lipsum.com/)
 
-- 文字コード一覧
+-   文字コード一覧
 
 たとえば矢印とか表示してくれる文字コードを探すのにいい
 
@@ -2047,6 +2185,6 @@ html {
 
 https://css-tricks.com/snippets/html/glyphs/
 
-- Linea Icon free icon
+-   Linea Icon free icon
 
 https://www.linea.is/
