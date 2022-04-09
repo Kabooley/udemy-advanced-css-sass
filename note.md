@@ -330,6 +330,90 @@ translateX -100px -> 0
 }
 ```
 
+## gridレイアウト
+
+予めgridのプロパティを定義しておいて
+
+あとからそのセレクタを適用したい要素に対して囲えばいい
+
+```html
+<div class="row">
+    <!-- row方向へ並べたい要素群 -->
+</div>
+```
+
+さらに、
+
+```SCSS
+.row {
+    max-width: $grid-width;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+    }
+    // floatを使用しているので
+    @include clearfix;
+
+    // いまのことろ、
+    // "col-"からなるセレクタ名の要素すべてに対して
+    // float: leftを適用している
+    [class^='col-'] {
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+        }
+    }
+
+    .col-1-of-2 {
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(
+            2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal}
+        );
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc(
+            2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal}
+        );
+    }
+
+    .col-3-of-4 {
+        width: calc(
+            3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}
+        );
+    }
+}
+
+```
+
+上記のように、
+
+横並びにしたときに、
+
+すべての幅の3/2をとるものや
+
+1/4の幅をとるもののためにあらかじめその幅を占領できるように定義してある
+
+
+こうしておけば、
+
+その幅をとりたい要素にたいしてこのclass名を与えればいいだけ
+
+
+
 ## SASS-basic
 
 #### ネスト
@@ -2021,7 +2105,7 @@ chrome の標準 devtools 機能の`toggle device`を使うと
 
 ```
 
-このままだとすべての.row子要素が幅いっぱいに表示されて見栄えが悪い
+このままだとすべての.row 子要素が幅いっぱいに表示されて見栄えが悪い
 
 なので
 
@@ -2053,9 +2137,7 @@ respond(tab-port)の時は左右に余裕を持たせたい
 
 これだけで修正完了しているのは
 
-ひとえにすべてのgridプロパティが親要素をもとにしたサイズ定義をしているから
-
-
+ひとえにすべての grid プロパティが親要素をもとにしたサイズ定義をしているから
 
 ## SCSS Tips: @mixin を使った条件分岐
 
@@ -2154,6 +2236,82 @@ html {
         }
     }
 } ;
+```
+
+## CSS Tips: @mediaの適用に関して
+
+chrome dev toolsのresponsive modeで各サイズに変更して、
+
+変更が必要な要素を見極める
+
+変更必要な要素を決めたら
+
+あとはさきのとおり`@include respond(SIZE){}`で定義すればいい
+
+例：
+
+ヘッダーのハンバーガアイコンの位置を、phoneサイズの時に修正した方がいい
+
+--> `tab-port`, `phone`サイズの時にtopとleftを修正した
+
+```SCSS
+.navigation {
+    &__checkbox {
+        display: none;
+    }
+
+    &__button {
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+        text-align: center;
+        cursor: pointer;
+
+        @include respond(tab-port) {
+            top: 4rem;
+            right: 4rem;
+        }
+
+        @include respond(phone) {
+            top: 3.5rem;
+            right: 3.5rem;
+        }
+    }
+
+    &__background {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient(
+            $color-primary-light,
+            $color-primary-dark
+        );
+        z-index: 1000;
+        transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+
+        //transform: scale(80);
+        @include respond(tab-port) {
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+
+        @include respond(phone) {
+            top: 3rem;
+            right: 3rem;
+        }
+    }
+
+}
+
 ```
 
 ## EMMET-Tips
