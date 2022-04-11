@@ -1,0 +1,69 @@
+// お試し編集中...
+.ex-sidebar {
+  &__column {
+    position: fixed;
+    right: 0;
+    /* 重ね合わせコンテキストがあったら埋もれないようにひとまず2にした */
+    z-index: 2;
+    /* top: 本家でそうなので、JavaScriptで計算する */
+    @media (max-width: 1182px) {
+      width: 300px;
+    }
+
+    @media (min-width: 1183px) {
+      width: 25%;
+    }
+  }
+
+  &__sidebar {
+    // nothing defined.
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+    border: 1px solid #d1d7dc;
+    border-right: 0;
+
+    /* dev */
+    background-color: #eee;
+  }
+
+  &__content {
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #f7f9fa;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* height: 本家でそうなので、JavaScriptで計算する */
+    /* dev */
+    background-color: #eee;
+  }
+
+  &__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    padding: 8px 16px;
+    border-left: 1px solid #f7f9fa;
+    border-right: 1px solid #f7f9fa;
+    background: #f7f9fa;
+
+    /* dev */
+    background-color: red;
+  }
+}
+
+.ex-transcript {
+  &__panel {
+  }
+
+  &__cue-container {
+  }
+
+  &__cue {
+  }
+}
