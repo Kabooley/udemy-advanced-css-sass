@@ -1,140 +1,66 @@
-/* 
-sidebarのとき
+@charset "UTF-8";
+/*
+セレクタ命名規則はBEMを参考に変更した
 
-- .ex--sidebar-contentのheightはJavaScriptで計算する
-- .ex--sidebar-columnのtopはJavaScriptで計算する
+どうやら基準のサイズは10pxでそこからremしているっぽい
 
-改善したこと
+- 基準のfont-sizeを設けること（もしくはUdemyのページを勝手に継承してくれるのか？）
 
-- .ex--sidebar-columnでwidthを@mediaで指定するようにした
-
-JavaScriptでの計算などをなくすことができる
-
-
-要改善: セレクタ名前
-
-`.ex-sidebar`を基準として...
-
-- 一番の外側の要素 .ex--sidebar-column --> `.ex-sidebar__column`
-- 2番目の要素 .ex--sidebar--sidebar --> `.ex-sidebar__sidebar`
-    ただしスタイリングなし
-- ヘッダ .ex--sidebar--sidebar-header --> `.ex-sidebar__header`
-- コンテンツ .ex--sidebar--content --> `.ex-sidebar__content`
-- コンテンツパネル .ex--sidebar-content-panel --> `.ex-transcript__panel`
-- 字幕文章 .ex--sidebar-transcript--cue-container --> `.ex-transcript__cue-container`
-- .nothingYet --> `..ex-transcript__cue` 
-- フッタ .ex--sidebar-transcript--autoscroll-wrapper --> `.ex-sidebar__footer`
+要確認：
+- コンパイル後の出力値が本家のものとかと一致しているか確認のこと
+- font-size
 
 */
+p {
+  font-size: inherit;
+  font-weight: 400;
+  max-width: 60rem; }
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
+.ex-sidebar {
+  font-size: inherit; }
+  .ex-sidebar__column {
+    position: fixed;
+    right: 0;
+    /* 重ね合わせコンテキストがあったら埋もれないようにひとまず2にした */
+    z-index: 2;
+    /* top: 本家でそうなので、JavaScriptで計算する */ }
+    @media (max-width: 1182px) {
+      .ex-sidebar__column {
+        width: 300px; } }
+    @media (min-width: 1183px) {
+      .ex-sidebar__column {
+        width: 25%; } }
+  .ex-sidebar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+    border: 1px solid #d1d7dc;
+    border-right: 0;
+    background-color: #fff; }
+  .ex-sidebar__content {
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #f7f9fa;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* 
+          height: 本家でそうなので、JavaScriptで計算する 
+          ブラウザの垂直方向のリサイズに応じて変化する
+          ウィンドウの上下いっぱいに伸びるようにしている
+        */ }
+  .ex-sidebar__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.8rem 1.6rem;
+    border-left: 1px solid #f7f9fa;
+    border-right: 1px solid #f7f9fa;
+    background: #f7f9fa;
+    /* dev */ }
 
-html {
-  font-size: 62.5%;
-}
+.ex-transcript__panel {
+  background-color: #f7f9fa; }
 
-body {
-  box-sizing: border-box;
-  position: relative;
-  height: 200vh;
-}
-
-.header {
-  color: #fff;
-  background-color: #1c1d1f;
-  height: 5.6rem;
-  align-items: center;
-  border-bottom: 1px solid #3e4143;
-}
-
-/* sidebar */
-
-.ex--sidebar-column {
-  position: fixed;
-  right: 0;
-  /* 
-      975px < window.innerWidth =< 1182px でwidth: 300px
-      window.innerWidth > 1182pxでwidth: 25%;
-      なのでセレクタを追加したほうがいいかも
-      */
-  /* 重ね合わせコンテキストがあったら埋もれないようにひとまず2にした */
-  z-index: 2;
-  /* 本家でそうなので、topの値はJavaScriptで計算する */
-}
-
-/* .ex--sidebar--wideview {
-  width: 25%;
-}
-.ex--sidebar--middleview {
-  width: 300px;
-} */
-
-.ex--sidebar--sidebar {
-}
-
-.ex--sidebar--sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem 0.8rem 0.8rem 1.6rem;
-  border: 1px solid #d1d7dc;
-  border-right: 0;
-
-  /* dev */
-  background-color: #eee;
-}
-
-.ex--sidebar--content {
-  z-index: 1;
-  background-color: #fff;
-  border: 1px solid #f7f9fa;
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* 本家でそうなので、高さはJavaScriptで計算する */
-  /* dev */
-  background-color: #eee;
-}
-
-.ex--sidebar-transcript--autoscroll-wrapper {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-
-  padding: 8px 16px;
-  border-left: 1px solid #f7f9fa;
-  border-right: 1px solid #f7f9fa;
-  background: #f7f9fa;
-
-  /* dev */
-  background-color: red;
-}
-
-.nothingYet {
-}
-
-/* 
-    これでいいみたい... 
-    なので
-    .ex--sidebar--middleviewと
-    .ex--sidebar--wideviewがいらない
-    (それを付与するJavaScriptコードもいらない)
-*/
-/* sidebar wideview or middleview */
-@media (max-width: 1182px) {
-  .ex--sidebar-column {
-    width: 300px;
-  }
-}
-
-@media (min-width: 1183px) {
-  .ex--sidebar-column {
-    width: 25%;
-  }
-}
-
+.ex-transcript__cue-container {
+  padding: 0.4rem 1.6rem; }
