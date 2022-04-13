@@ -1,0 +1,148 @@
+/*
+セレクタ命名規則はBEMを参考に変更した
+
+どうやら基準のサイズは10pxでそこからremしているっぽい
+
+- 基準のfont-sizeを設けること（もしくはUdemyのページを勝手に継承してくれるのか？）
+
+- 本家はspanに対してハイライトをつけているが、こっちはcue-containerに対してhighlightをつけている
+
+要確認：
+- コンパイル後の出力値が本家のものとかと一致しているか確認のこと
+- font-size
+- footerの上辺の境界線を際立たせる
+
+*/
+/*
+JavaScriptで修正が必要な点
+
+- sidebarの時のmiddleviewとwideviewにかかわる部分全て要らなくなったので除去する
+- セレクタ名の変更とそれにかかわる修正
+- node-sassの導入とscssへの変更
+
+
+*/
+
+// 要改善: セレクタ名前
+
+// `.ex-sidebar`を基準として...
+
+// - 一番の外側の要素 .ex--sidebar-column --> `.ex-sidebar__column`
+// - 2番目の要素 .ex--sidebar--sidebar --> `.ex-sidebar__sidebar`
+//     ただしスタイリングなし
+// - ヘッダ .ex--sidebar--sidebar-header --> `.ex-sidebar__header`
+// - コンテンツ .ex--sidebar--content --> `.ex-sidebar__content`
+// - コンテンツパネル .ex--sidebar-content-panel --> `.ex-transcript__panel`
+// - 字幕文章 .ex--sidebar-transcript--cue-container --> `.ex-transcript__cue-container`
+// - .nothingYet --> `.ex-transcript__cue`
+// - フッタ .ex--sidebar-transcript--autoscroll-wrapper --> `.ex-sidebar__footer`
+
+// data-purpose="ex-transcript__cue"
+
+// お試し編集中...
+$color-primary: #f7f9fa;
+$color-white: #fff;
+
+p {
+    font-size: inherit;
+    font-weight: 400;
+    max-width: 60rem;
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == middleview {
+        @media (min-width: 1183px) {
+            width: 25%;
+        }
+    }
+    @if $breakpoint == wideview {
+        @media (max-width: 1182px) {
+            width: 300px;
+        }
+    }
+}
+
+.ex-sidebar {
+    font-size: inherit;
+    box-sizing: inherit;
+
+    /*
+        Udemyのページに埋め込む
+        本家のTranscriptの上にぴったり表示させるので
+        position: fixed;にしている
+        埋め込むときの本家の親要素は、
+        ".app--content-column--HC_i1"
+    */
+    &__column {
+        position: fixed;
+        right: 0;
+        /* 重ね合わせコンテキストがあったら埋もれないようにひとまず2にした */
+        z-index: 2;
+        /* top: 本家でそうなので、JavaScriptで計算する */
+
+        @include respond(middleview);
+        @include respond(wideview);
+    }
+
+    &__sidebar {
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+        border: 1px solid #d1d7dc;
+        border-right: 0;
+        background-color: #fff;
+    }
+
+    &__content {
+        z-index: 1;
+        background-color: #fff;
+        border: 1px solid $color-primary;
+        overflow-x: hidden;
+        overflow-y: auto;
+        /* 
+          height: 本家でそうなので、JavaScriptで計算する 
+          ブラウザの垂直方向のリサイズに応じて変化する
+          ウィンドウの上下いっぱいに伸びるようにしている
+        */
+    }
+
+    &__footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+
+        padding: 0.8rem 1.6rem;
+        border-left: 1px solid $color-primary;
+        border-right: 1px solid $color-primary;
+        border-top: 2px solid $color-white;
+        background: $color-primary;
+    }
+}
+
+.ex-transcript {
+    &__panel {
+        background-color: $color-primary;
+    }
+
+    &__cue-container {
+        padding: 0.4rem 1.6rem;
+
+        // NOTE: ここのクラス名の変化は実際と異なる
+        // 実際は
+        // class="ex-transcript__cue-container --highlight--"
+        &--highlight {
+            padding: 0.4rem 1.6rem;
+            background-color: #cec0fc;
+            box-shadow: 0.8rem 0 0 #cec0fc, -0.8rem 0 0 #cec0fc;
+            box-decoration-break: clone;
+        }
+    }
+
+    &__cue {
+        // nothing defined
+    }
+}
